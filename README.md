@@ -7,8 +7,8 @@
 #### [v1.01]
 - Fixed ability to plot multiple analysis window lines by removing need to update plot manually.
 - Window screen size is now dynamic to accomodate different screen sizes:
-  - added a scroll bar to left hand menu.
-  - graph widget now expands to maximise its size.
+  - Added a scroll bar to left hand menu.
+  - Graph widget now expands to maximise its size.
 - Style set to 'Fusion' so as to avoid label/button sizing problems for different operating systems.
 - Fixed inability to keep zoomed-in frame whilst also changing lines being viewed.
 
