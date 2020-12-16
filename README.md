@@ -3,8 +3,22 @@
 > **Abstract:** The PureGym project contains tools for acquisition, visualisation and analysis of gym attendance data.
 
 ## Current Version: PureGymAnalysis[v1.01]
+### _SETUP_
+1. **PureGymGUI.py** - Main script run to start application
+2. **PureGymGUI.ui** - _User Interface_ file containing code to display GUI
+3. **PG2020.db** - Database containing time series collected using webscraper script
+4. **mplwidget.py** - Used by the main script to display the graph
+5. **PureGymFunctions.py** - Auxilary functions imported into the main script
+
+To run, save all files in the same folder in your prefered directory and run PureGymGUI.py file.\
+Some modules may need importing:
+ - pyqt5
+ - matplotlib
+
+---
+
 ### _BUG FIXES_
-#### [v1.01]
+#### NEW :: [v1.01]
 - Fixed ability to plot multiple analysis window lines by removing need to update plot manually.
 - Window screen size is now dynamic to accomodate different screen sizes:
   - Added a scroll bar to left hand menu.
@@ -15,7 +29,7 @@
 ---
 
 ### _UPDATES_
-#### [v1.01]
+#### NEW :: [v1.01]
 
 Annotations:  
 - Number line: plot horizontal line for a constant number of people.
