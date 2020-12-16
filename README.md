@@ -3,13 +3,56 @@
 > **Abstract:** The PureGym project contains tools for acquisition, visualisation and analysis of gym attendance data.
 
 ## Current Version: PureGymAnalysis[v1.01]
-
 ### _BUG FIXES_
+#### [v1.01]
+- Fixed ability to plot multiple analysis window lines by removing need to update plot manually.
+- Window screen size is now dynamic to accomodate different screen sizes:
+  - added a scroll bar to left hand menu.
+  - graph widget now expands to maximise its size.
+- Style set to 'Fusion' so as to avoid label/button sizing problems for different operating systems.
 
+---
 ### _UPDATES_
+#### [v1.01]
 
+Annotations:  
+- Number line: plot horizontal line for a constant number of people.
+- Time annotaion toggle: 
+  - time line can be toggled without updating.
+  - interactive animated movement with sliers.
+- Number annotation toggle: 
+-	 number line can be toggled without updating.
+  - interactive animated movement with sliers.
+  
+Legend: 
+- Split legend into smooth/raw so legend picking can be done.
+- Legend picking - turn on & off lines using legend.
+- Legends can be toggled without updating.
+
+Gridlines:
+- Gridlines can be toggled without updating.
+
+Plot Lines: 
+- Ability to toggle smooth, raw and mean lines.
+  - Indadvertently means you can keep zoom when graph changed.
+  
+Time annotaion toggle: 
+- time line can be toggled without updating.
+- interactive animated movement with sliers.
+
+Number annotation toggle: 
+- number line can be toggled without updating.
+- interactive animated movement with sliers.
+
+Analysis window Toggle: 
+- analysis window can be toggled without updating
+- interactive animated movement with sliders.
+
+Weekday toggle: 
+- Can toggle lines in plot/legend using tab2 weekday checkboxes.
+- Add 'Select All' and 'Deselect All' buttons.
+---
 ### _FEATURES_
-
 #### DATA TYPES:
 
  * Raw Data - display the raw data
@@ -28,28 +71,29 @@
 
 #### ANNOTATIONS:
 
- * Time - display a vertical line at a specified time
+ * Time - display a vertical line at a specified time on the x-axis
+ * People - display a horizontal line at a constant number of people on the y-axis
 
 
 
-#### SPECIFIC DAYS:
+#### SPECIFIC DAY:
 
-Select a single day to display.
+Select a single day to display:
  * Yesterday - set date to yesterday
  * Today - set date to today
+ * Update (press enter) - displays the selected day
 
 Notes can be added to the selected day using the plain text editor.
 When a day is loaded, its corresponding notes are displayed in the text editor.
 If the notes are altered, the new notes can be saved.
  * Save - save altered notes
 
- * Update (press enter) - displays the selected day
 
 
 
 #### SELECT DAYS:
 
-Select a range of days to display.
+Select a range of days to display:
 Days can be filtered using the weekday checkboxes.
 
  * Start - select the start of the date range
@@ -59,6 +103,9 @@ Days can be filtered using the weekday checkboxes.
  * Past month - sets the start and end dates to the previous 28 days
  * +1 week - sets end date 7 days after end date
  * +1 month - sets end date 28 days after start date
+ 
+ * Select All - select all check boxes
+ * Deselect All - unselect all check boxes
 
  * Update (press enter) - displays the selected range of days
 
@@ -81,3 +128,6 @@ The start time cannot be after the end time.
  * Day - sets (start,end) = (04:30,23:30)
  * Morning - sets (start,end) = (04:30,09:00)
  * Evening - sets (start,end) = (16:00,21:00)
+ 
+ * Update Analysis - updates the calculated quantities if the analysis window has been changed.
+---
