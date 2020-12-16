@@ -10,48 +10,51 @@
   - added a scroll bar to left hand menu.
   - graph widget now expands to maximise its size.
 - Style set to 'Fusion' so as to avoid label/button sizing problems for different operating systems.
+- Fixed inability to keep zoomed-in frame whilst also changing lines being viewed.
 
 ---
+
 ### _UPDATES_
 #### [v1.01]
 
 Annotations:  
 - Number line: plot horizontal line for a constant number of people.
-- Time annotaion toggle: 
-  - time line can be toggled without updating.
-  - interactive animated movement with sliers.
+- Time annotation toggle: 
+  - Time line can be toggled using checkbox without updating.
+  - Interactive animated movement with sliers.
 - Number annotation toggle: 
--	 number line can be toggled without updating.
-  - interactive animated movement with sliers.
+  -	Number line can be toggled using checkbox without updating.
+  - Interactive animated movement with sliers.
   
 Legend: 
 - Split legend into smooth/raw so legend picking can be done.
-- Legend picking - turn on & off lines using legend.
-- Legends can be toggled without updating.
+- Legend picking - turn on & off lines using by clicking on corresponding legend line.
+- Legends can be toggled using checkbox without updating.
 
 Gridlines:
-- Gridlines can be toggled without updating.
+- Gridlines can be toggled using checkbox without updating.
 
 Plot Lines: 
-- Ability to toggle smooth, raw and mean lines.
-  - Indadvertently means you can keep zoom when graph changed.
+- Ability to toggle smooth, raw and mean lines using checkboxes without updating.
   
 Time annotaion toggle: 
-- time line can be toggled without updating.
-- interactive animated movement with sliers.
+- Time line can be toggled using checkbox without updating.
+- Interactive animated movement with sliers.
 
 Number annotation toggle: 
-- number line can be toggled without updating.
-- interactive animated movement with sliers.
+- Number line can be toggled using checkbox without updating.
+- Interactive animated movement with sliders.
 
 Analysis window Toggle: 
-- analysis window can be toggled without updating
-- interactive animated movement with sliders.
+- Analysis window can be toggled using checkbox without updating.
+- Interactive animated movement with sliders.
 
 Weekday toggle: 
 - Can toggle lines in plot/legend using tab2 weekday checkboxes.
-- Add 'Select All' and 'Deselect All' buttons.
+- Added 'Select All' and 'Deselect All' buttons for the weekday checkboxes.
+
 ---
+
 ### _FEATURES_
 #### DATA TYPES:
 
@@ -130,4 +133,5 @@ The start time cannot be after the end time.
  * Evening - sets (start,end) = (16:00,21:00)
  
  * Update Analysis - updates the calculated quantities if the analysis window has been changed.
+ 
 ---
