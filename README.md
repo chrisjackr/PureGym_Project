@@ -148,4 +148,8 @@ The start time cannot be after the end time.
  
  * Update Analysis - updates the calculated quantities if the analysis window has been changed.
  
+ #### GRAPH:
+ 
+ Plotted lines can be toggled on and off by clicking on their corresponding lines in the legend.
+ 
 ---
