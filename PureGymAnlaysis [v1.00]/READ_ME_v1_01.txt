@@ -1,6 +1,6 @@
-READ_ME_v1_00.txt
+READ_ME_v1_01.txt
 
-=================PureGymAnalysis[v1.00]=================
+=================PureGymAnalysis[v1.01]=================
 
 ___UPDATES___
 
