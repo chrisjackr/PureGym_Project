@@ -2,13 +2,13 @@
 
 PureGym data acquisition and analysis.
 
-##=================PureGymAnalysis[v1.01]=================
+## =================PureGymAnalysis[v1.01]=================
 
-###___UPDATES___
+### ___UPDATES___
 
-###___FEATURES___
+### ___FEATURES___
 
-####DATA TYPES:
+#### DATA TYPES:
 
  > Raw Data - display the raw data
  > Smoothed Data  - display the data averaged over a 15minute window
@@ -16,7 +16,7 @@ PureGym data acquisition and analysis.
 
 
 
-####OPTIONS:
+#### OPTIONS:
 
  > Gridlines - turn on/off gridlines
  > Legend - turn on/off legend
@@ -24,13 +24,13 @@ PureGym data acquisition and analysis.
 
 
 
-####ANNOTATIONS:
+#### ANNOTATIONS:
 
  > Time - display a vertical line at a specified time
 
 
 
-####SPECIFIC DAYS:
+#### SPECIFIC DAYS:
 
 Select a single day to display.
  > Yesterday - set date to yesterday
@@ -45,7 +45,7 @@ If the notes are altered, the new notes can be saved.
 
 
 
-####SELECT DAYS:
+#### SELECT DAYS:
 
 Select a range of days to display.
 Days can be filtered using the weekday checkboxes.
@@ -62,12 +62,12 @@ Days can be filtered using the weekday checkboxes.
 
 
 
-####CALENDAR:
+#### CALENDAR:
 Work in progress
 
 
 
-####ANALYSIS:
+#### ANALYSIS:
 
 The analysis window specifices the range of times between which some basic quantities are calclulated.
 The start time cannot be after the end time.
