@@ -1,8 +1,8 @@
-# ------------------------------------------------------
-# ------------------ PureGymGUI_v1_01.py -------------------
-# ------------------------------------------------------
+# ============================================================================================================================================================================================================================================================== #
+# --------------------------------------------------------------------------------------------------------------- PureGymGUI_v1_01.py -------------------------------------------------------------------------------------------------------------------------- #
+# ============================================================================================================================================================================================================================================================== #
 
-###GUI_IMPORT
+#GUI_IMPORT
 from PyQt5.QtWidgets import *
 #QWidget, QGridLayout, QPushButton, QSizePolicy, QApplication
 from PyQt5.uic import loadUi
@@ -10,9 +10,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-
-###RANDOM_IMPORT
-from PureGymFunctions_v1_00 import num2time, time2num
+#RANDOM_IMPORT
+from PureGymFunctions import num2time, time2num
 import sys
 import numpy as np
 from numpy import linspace
@@ -22,35 +21,33 @@ from math import cos,sin,pi
 import time
 import datetime
 
-###PLOT_IMPORT
+#PLOT_IMPORT
 from matplotlib import pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as NavigationToolbar)
-from matplotlib.ticker import (AutoMinorLocator, AutoLocator, LinearLocator, FixedLocator,FormatStrFormatter,AutoMinorLocator)
+from matplotlib.backend_tools import ToolToggleBase
+from matplotlib.ticker import (AutoMinorLocator, AutoLocator, LinearLocator, MaxNLocator, FixedLocator,FormatStrFormatter,AutoMinorLocator)
 from matplotlib.widgets import Cursor
 
-from openpyxl import Workbook, load_workbook
+#DATABASE_IMPORT
+#from openpyxl import Workbook, load_workbook
 import sqlite3
 
-#---------------------------------------------------------
-#---------------------------------------------------------
-#---------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
 
 
 
 
-#-------------------------TIME SERIES--------------------------
-# time_vec = []
-# for i in range(1440):
-#     time_vec.append(i)
 
-time_vec = []
-for i in range(1440):
+
+# -----------------------------------------------------------------------------------------------------------------TIME_SERIES--------------------------------------------------------------------------------------------------------------------------------- #
+time_vec = []                                                                                                            # Creates a 1440 length vector with datetime entries between 00:00 and 23:59. Notes that the Year Day and Month are set to 01/01/2020.
+for i in range(1440):                                                                                                    # This needs to be specified when plotting graphs, even though only HH:MM is shown on the x-axis
     tdelta = datetime.timedelta(minutes=i)
     time_vec.append(datetime.datetime(2020,1,1,0,0,0,0)+tdelta)
 
-x_label = []
-x_list = []
+x_label = []                                                                                                             # x_list contains a list with the 24 hours in datetime format.
+x_list = []                                                                                                              # x_label contains a list with the 24 hour labels: [00:00, 01:00, 02:00, ... , 23:00]
 for i in range(24):
     x_list.append(datetime.datetime(2020, 1, 1, i, 0, 0, 0))
     M = datetime.datetime(2020, 1, 1, i, 0, 0, 0).strftime('%M')
@@ -58,12 +55,37 @@ for i in range(24):
     x_label.append(str(H+':'+M))
 
 
-x_list.append(datetime.datetime(2020,1,2,0,0,0,0))
-x_label.append('24:00')
-#print(x_list)
-#print(x_label)
-#--------------------------------------------------------------
+x_list.append(datetime.datetime(2020,1,2,0,0,0,0))                                                                       # Adds midnight to list.
+x_label.append('24:00')                                                                                                  # Adds 24:00 to list.
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
 
+
+# ----------------------------------------------------------------------------------------------------------------LEGEND_PICKING------------------------------------------------------------------------------------------------------------------------------- #
+def on_pick(event):                                                                                                      # Find the original line corresponding to the legend proxy line that was clicked and toggle its visibility.
+    if window.rawdata_checkBox.isChecked():
+        try:
+            legline_raw = event.artist                                                                                       # Set legline to be the legend proxy line clicked.
+            origline_raw = lined_raw[legline_raw]                                                                            # Set origline to be the proxy line's corresponding line on the graph.
+            visible_raw = not origline_raw.get_visible()                                                                     # Set the visible variable to be the opposite of the line on the graph's current visibility.
+            origline_raw.set_visible(visible_raw)                                                                            # Change the visibility of the line on the graph.
+            alpha_raw[legline_raw] = visible_raw                                                                             # Set the alpha record of the proxy line to the new visibility of the line on the graph.
+            legline_raw.set_alpha(1.0 if visible_raw else 0.2)                                                               # Change the alpha on the legend proxy line to correspond with the line on the graph.
+        except:
+            pass
+    if window.smootheddata_checkBox.isChecked():
+        try:
+            legline_smooth = event.artist
+            origline_smooth = lined_smooth[legline_smooth]
+            visible_smooth = not origline_smooth.get_visible()
+            origline_smooth.set_visible(visible_smooth)
+            alpha_smooth[legline_smooth] = visible_smooth
+            legline_smooth.set_alpha(1.0 if visible_smooth else 0.2)
+        except:
+            pass
+
+    window.MplWidget.canvas.draw()
+    window.update_bg()
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
 
@@ -72,42 +94,54 @@ class MatplotlibWidget(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-        loadUi("PureGymGUI_v1_01.ui", self)
-        QMainWindow.showMaximized(self)
+        loadUi("PureGymGUI_v1_01.ui", self)                                                                              # Load GUI file.
+        QMainWindow.showMaximized(self)                                                                                  # Fit window to full screen.
 
         self.setWindowTitle("PureGym Analytics GUI [v1.01]")
-        self.label_title.setText('PureGym Analysis    [v1.01]')
-        self.addToolBar(NavigationToolbar(self.MplWidget.canvas, self))
-        self.line.setGeometry(QtCore.QRect(350, 10, 20, 1000))
-        self.MplWidget.setGeometry(QtCore.QRect(370, 10, 1530, 950))  #(xpos,ypos,xwidth,yheight)
-        self.cursor = Cursor(self.MplWidget.canvas.axes, alpha=0.2, color = 'grey', linewidth = 1, useblit=True)
-
-
-
+        self.label_title.setText('PureGym Analysis   [v1.01]')
+        self.addToolBar(NavigationToolbar(self.MplWidget.canvas, self))                                                  # Add matplotlib graph toolbar to top of screen.
+        self.showMaximized()
+        #SET_WINDOW_SIZE_MANUALLY
+        #self.line.setGeometry(QtCore.QRect(350, 10, 20, 1000))                                                           # Set size of userface within window?
+        #self.MplWidget.setGeometry(QtCore.QRect(370, 10, 1530, 950))  #(xpos,ypos,xwidth,yheight)                        # Set size of userface within window?
+        self.MplWidget.canvas.mpl_connect('pick_event', on_pick)
+        self.cursor = Cursor(self.MplWidget.canvas.axes, alpha=0.2, color = 'grey', vertOn=True, horizOn=True, linewidth = 1, useblit=True)
+        self.cursor_toggle = True
 
     #DATA_TYPES_BOX
-        self.rawdata_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.smootheddata_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.meandata_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.rawdata_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.smootheddata_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.meandata_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
+        self.rawdata_checkBox.stateChanged.connect(self.raw_visiblility)
+        self.smootheddata_checkBox.stateChanged.connect(self.smooth_visibility)
+        self.rawdata_checkBox.stateChanged.connect(self.legend_visibility)
+        self.smootheddata_checkBox.stateChanged.connect(self.legend_visibility)
+        self.meandata_checkBox.stateChanged.connect(self.mean_visibility)
 
     #OPTIONS_BOX
-        self.gridlines_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.legend_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.analysis_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.gridlines_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.legend_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.analysis_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
+        self.legend_checkBox.stateChanged.connect(self.legend_visibility)
+        self.gridlines_checkBox.stateChanged.connect(self.gridlines_visibility)
+        self.analysis_checkBox.stateChanged.connect(self.analine_visibility)
 
     #ANNOTATIONS_BOX
-        self.time_checkBox.stateChanged.connect(lambda: self.t1_update_pushButton.setEnabled(True))
-        self.time_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
+        #TIME
+        self.time_checkBox.stateChanged.connect(self.time_visibility)
+        self.time_checkBox.stateChanged.connect(self.update_bg)
         self.time_horizontalSlider.setRange(0,1439)
         self.time_horizontalSlider.setFocusPolicy(Qt.NoFocus)
+        self.time_horizontalSlider.sliderPressed.connect(self.time_press)
         self.time_horizontalSlider.valueChanged.connect(self.time_slider)
-        self.specifictime_timeEdit.timeChanged.connect(self.time_slider1)
+        self.specifictime_timeEdit.timeChanged.connect(self.time_slider_update)
+        self.time_horizontalSlider.sliderReleased.connect(self.time_release)
+        #PEOPLE
+        self.people_spinBox.setValue(0)
+        self.people_spinBox.setRange(0,124)
+        self.people_checkBox.stateChanged.connect(self.people_visibility)
+        self.people_checkBox.stateChanged.connect(self.update_bg)
+        self.people_horizontalSlider.setRange(0,124)
+        self.people_horizontalSlider.setFocusPolicy(Qt.NoFocus)
+        self.people_horizontalSlider.sliderPressed.connect(self.people_press)
+        self.people_horizontalSlider.valueChanged.connect(self.people_slider)
+        self.people_spinBox.valueChanged.connect(self.people_slider_update)
+        self.people_horizontalSlider.sliderReleased.connect(self.people_release)
+
 
     #TAB1
         #------Tab1 Setup--------------------------------------------------------------
@@ -138,6 +172,10 @@ class MatplotlibWidget(QMainWindow):
         self.t1_today_pushButton.clicked.connect(lambda: self.t1_update_pushButton.setEnabled(True))
         self.t1_yesterday_pushButton.clicked.connect(lambda: self.t1_update_pushButton.setEnabled(True))
 
+        self.time_press_toggle = False
+        self.start_press_toggle = False
+        self.end_press_toggle = False
+        self.people_press_toggle = False
 
 
 
@@ -174,16 +212,18 @@ class MatplotlibWidget(QMainWindow):
         self.t2_update_pushButton.clicked.connect(lambda: self.t2_update_pushButton.setEnabled(False))
         self.t2_update_pushButton.clicked.connect(lambda: self.t1_update_pushButton.setEnabled(True))
 
-        self.legend_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
         self.t2_start_dateEdit.dateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
         self.t2_end_dateEdit.dateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_monday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_tuesday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_wednesday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_thursday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_friday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_saturday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
-        self.t2_sunday_checkBox.stateChanged.connect(lambda: self.t2_update_pushButton.setEnabled(True))
+        self.t2_monday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_monday_checkBox))
+        self.t2_tuesday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_tuesday_checkBox))
+        self.t2_wednesday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_wednesday_checkBox))
+        self.t2_thursday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_thursday_checkBox))
+        self.t2_friday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_friday_checkBox))
+        self.t2_saturday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_saturday_checkBox))
+        self.t2_sunday_checkBox.stateChanged.connect(lambda : self.weekday_toggle(self.t2_sunday_checkBox))
+
+        self.t2_selectall_pushButton.clicked.connect(lambda: self.days_selection(True))
+        self.t2_deselectall_pushButton.clicked.connect(lambda: self.days_selection(False))
 
         self.t2_update_pushButton.clicked.connect(self.update_range_dates)
 
@@ -196,19 +236,26 @@ class MatplotlibWidget(QMainWindow):
 
 
     #ANALYSIS_BOX
+        self.analysis_checkBox.stateChanged.connect(self.analine_visibility)
+        self.analysis_checkBox.stateChanged.connect(self.update_bg)
         #START WINDOW
+        self.start_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0,0))
         self.start_horizontalSlider.setRange(0,1439)
-        self.start_horizontalSlider.setFocusPolicy(Qt.NoFocus)
-        self.start_horizontalSlider.valueChanged.connect(self.start_slider)
         self.start_horizontalSlider.setValue(0)
-        self.start_timeEdit.timeChanged.connect(self.start_slider1)
-
+        self.start_horizontalSlider.setFocusPolicy(Qt.NoFocus)
+        self.start_horizontalSlider.sliderPressed.connect(self.start_press)
+        self.start_horizontalSlider.valueChanged.connect(self.start_slider)
+        self.start_timeEdit.timeChanged.connect(self.start_slider_update)
+        self.start_horizontalSlider.sliderReleased.connect(self.start_release)
         #END WINDOW
+        self.end_timeEdit.setDateTime(datetime.datetime(2020,1,1,23,59,0,0))
         self.end_horizontalSlider.setRange(0,1439)
-        self.end_horizontalSlider.setFocusPolicy(Qt.NoFocus)
-        self.end_horizontalSlider.valueChanged.connect(self.end_slider)
         self.end_horizontalSlider.setValue(1439)
-        self.end_timeEdit.timeChanged.connect(self.end_slider1)
+        self.end_horizontalSlider.setFocusPolicy(Qt.NoFocus)
+        self.end_horizontalSlider.sliderPressed.connect(self.end_press)
+        self.end_horizontalSlider.valueChanged.connect(self.end_slider)
+        self.end_timeEdit.timeChanged.connect(self.end_slider_update)
+        self.end_horizontalSlider.sliderReleased.connect(self.end_release)
 
         #BUTTONS
         self.fullday_pushButton.clicked.connect(self.fullday)
@@ -217,9 +264,8 @@ class MatplotlibWidget(QMainWindow):
         self.evening_pushButton.clicked.connect(self.evening)
 
         #UPDATE ANALYSIS
-        #self.update_pushButton.clicked.connect(self.update_options)
-        #self.update_pushButton.clicked.connect(self.update_analysis)
-
+        self.update_analysis_pushButton.clicked.connect(self.update_analysis)
+        self.test_pushButton.clicked.connect(self.test)
 
     #Timer for continuous plotting cur_labels.......
         # self.timer = QtCore.QTimer()
@@ -234,12 +280,155 @@ class MatplotlibWidget(QMainWindow):
         cur_mean = 7
         self.MplWidget.canvas.axes.text(0.02, 1.01, '{}:{}:{}'.format(cur_min,cur_mean,cur_max),transform=self.MplWidget.canvas.axes.transAxes, fontsize=10, color = 'grey',  verticalalignment='bottom', bbox=props)
 
+    def days_selection(self,bool):
+        self.t2_monday_checkBox.setChecked(bool)
+        self.t2_tuesday_checkBox.setChecked(bool)
+        self.t2_wednesday_checkBox.setChecked(bool)
+        self.t2_thursday_checkBox.setChecked(bool)
+        self.t2_friday_checkBox.setChecked(bool)
+        self.t2_saturday_checkBox.setChecked(bool)
+        self.t2_sunday_checkBox.setChecked(bool)
 
+    def weekday_toggle(self,checkBox):
+        self.t2_update_pushButton.setEnabled(True)
+        weekday_checkBox_dict = {self.t2_monday_checkBox:'Mon',self.t2_tuesday_checkBox:'Tue',self.t2_wednesday_checkBox:'Wed',self.t2_thursday_checkBox:'Thu',self.t2_friday_checkBox:'Fri',self.t2_saturday_checkBox:'Sat',self.t2_sunday_checkBox:'Sun'}
+        if True:
+        #for checkBox in list(weekday_checkBox_dict.keys()):
+            if True:
+                try:
+                    for legline_raw in self.leg.get_lines():
+                        if legline_raw.get_label()[0:3] == weekday_checkBox_dict[checkBox]:
+                            origline_raw = lined_raw[legline_raw]
+                            visible_raw = checkBox.isChecked()
+                            # origline_raw.set_visible(visible_raw)
+                            # alpha_raw[legline_raw] = visible_raw
+                            legline_raw.set_alpha(1.0 if visible_raw else 0.2)
+                            alpha_raw[legline_raw] = visible_raw
+                            if self.rawdata_checkBox.isChecked():
+                                origline_raw.set_visible(visible_raw)
+                except:
+                    pass
+                try:
+                    for legline_smooth in self.leg2.get_lines():
+                        if legline_smooth.get_label()[0:3] == weekday_checkBox_dict[checkBox]:
+                            origline_smooth = lined_smooth[legline_smooth]
+                            visible_smooth = checkBox.isChecked()
+                            # origline_smooth.set_visible(visible_smooth)
+                            # alpha_raw[legline_smooth] = visible_smooth
+                            legline_smooth.set_alpha(1.0 if visible_smooth else 0.2)
+                            alpha_raw[legline_smooth] = visible_smooth
+                            if self.smootheddata_checkBox.isChecked():
+                                origline_smooth.set_visible(visible_smooth)
+                except:
+                    pass
+        window.MplWidget.canvas.draw()
+        window.update_bg()
 
+    def legend_visibility(self):
+        if self.legend_checkBox.isChecked():
+            if self.rawdata_checkBox.isChecked() and self.smootheddata_checkBox.isChecked():
+                self.leg.set_visible(True)
+                self.leg2.set_visible(True)
+            elif self.smootheddata_checkBox.isChecked():
+                self.leg.set_visible(False)
+                self.leg2.set_visible(True)
+            elif self.rawdata_checkBox.isChecked():
+                self.leg.set_visible(True)
+                self.leg2.set_visible(False)
+            else:
+                self.leg.set_visible(False)
+                self.leg2.set_visible(False)
+        else:
+            self.leg.set_visible(False)
+            self.leg2.set_visible(False)
 
+        self.MplWidget.canvas.draw()
+        self.update_bg()
 
+    def gridlines_visibility(self):
+        if self.gridlines_checkBox.isChecked():
+            self.MplWidget.canvas.axes.grid(True)
+        else:
+            self.MplWidget.canvas.axes.grid(False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
 
+    def raw_visiblility(self):
+        if self.rawdata_checkBox.isChecked():
+            for legline_raw in self.leg.get_lines():
+                if alpha_raw[legline_raw]:
+                    origline_raw = lined_raw[legline_raw]
+                    origline_raw.set_visible(True)
+                    legline_raw.set_alpha(1.0)
+                else:
+                    legline_raw.set_alpha(0.2)
+        else:
+            for origline_raw in list(lined_raw.values()):
+                origline_raw.set_visible(False)
+            for legline_raw in self.leg.get_lines():
+                legline_raw.set_alpha(0.2)
 
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def smooth_visibility(self):
+        if self.smootheddata_checkBox.isChecked():
+            for legline_smooth in self.leg2.get_lines():
+                if alpha_smooth[legline_smooth]:
+                    origline_smooth = lined_smooth[legline_smooth]
+                    origline_smooth.set_visible(True)
+                    legline_smooth.set_alpha(1.0)
+                else:
+                    legline_smooth.set_alpha(0.2)
+        else:
+            for origline_smooth in list(lined_smooth.values()):
+                origline_smooth.set_visible(False)
+            for legline_smooth in self.leg2.get_lines():
+                legline_smooth.set_alpha(0.2)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def mean_visibility(self):
+        if self.meandata_checkBox.isChecked():
+            self.line_mean.set_visible(True)
+        else:
+            self.line_mean.set_visible(False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def analine_visibility(self):
+        if self.analysis_checkBox.isChecked():
+            self.analine1.set_visible(True)
+            self.analine2.set_visible(True)
+        else:
+            self.analine1.set_visible(False)
+            self.analine2.set_visible(False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def time_visibility(self):
+        if self.time_checkBox.isChecked():
+            self.time_line.set_visible(True)
+        else:
+            self.time_line.set_visible(False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def people_visibility(self):
+        if self.people_checkBox.isChecked():
+            self.people_line.set_visible(True)
+        else:
+            self.people_line.set_visible(False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def test(self):
+        tog = not self.cursor_toggle
+        self.cursor = Cursor(self.MplWidget.canvas.axes, alpha=0.2, color = 'grey', vertOn=tog, horizOn=tog, linewidth = 1, useblit=True)
+        self.cursor_toggle = tog
+        #self.MplWudget.canvas.mpl_connect("axes_enter_event",self.update_bg)
+        #self.update_bg()
+        #self.MplWidget.canvas.restore_region(self.bg)
 
 
 #=============================TAB1================================================================================
@@ -292,7 +481,7 @@ class MatplotlibWidget(QMainWindow):
 
         global text
 
-        conn = sqlite3.connect('PG2020_SQL_v1_00.db')
+        conn = sqlite3.connect('PG2020_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -322,7 +511,7 @@ class MatplotlibWidget(QMainWindow):
         d = self.t1_specificday_dateEdit.dateTime().toPyDateTime().date()
         var0 = d.strftime('%d/%m/%y')
 
-        conn = sqlite3.connect('PG2020_SQL_v1_00.db')
+        conn = sqlite3.connect('PG2020_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -433,6 +622,9 @@ class MatplotlibWidget(QMainWindow):
 
 
 
+
+
+
 #========================================TAB3======================================================================
     #No current functions
 #==================================================================================================================
@@ -440,55 +632,282 @@ class MatplotlibWidget(QMainWindow):
 
 
 
-    #-----------------------------SLIDERS---------------------------------------------------
+
+
+
+    def update_bg(self):
+        self.bg = self.MplWidget.canvas.copy_from_bbox(self.MplWidget.canvas.axes.bbox)
+        print('UpdateBackground')
+
+#-----------------------------TIME_SLIDER-----------------------------------------------------------------------------
     def time_slider(self,value):
-        if self.time_checkBox.isChecked():
-            self.t1_update_pushButton.setEnabled(True)
-            self.t2_update_pushButton.setEnabled(True)
-        minute = value%60
-        hour = int((value - minute)/60)
-        #print(value,hour,minute)
-        hourdelta = datetime.timedelta(hours = hour, minutes = minute)
-        self.specifictime_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
+        if self.time_press_toggle:
+            print('Slider Changed - time')
+            minute = value%60
+            hour = int((value - minute)/60)
+            hourdelta = datetime.timedelta(hours = hour, minutes = minute)
+            self.specifictime_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
+            self.MplWidget.canvas.blit(self.MplWidget.canvas.axes.bbox)
 
-    def time_slider1(self):
+            if self.time_checkBox.isChecked():
+                self.MplWidget.canvas.restore_region(self.bg)
+                annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                                                                  linewidth=1,color='#2989e1', alpha=0.2, animated = True, visible=True)
+                self.MplWidget.canvas.axes.draw_artist(self.time_line)
+        else:
+            print('Datechanged - time')
+            try:
+                self.time_line.remove()
+            except:
+                pass
+            annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
+            if self.time_checkBox.isChecked():
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                                                                  linewidth=1, color='#2989e1', alpha=0.2, visible=True)
+            else:
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                                                                  linewidth=1, color='#2989e1', alpha=0.2, visible=False)
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+
+    def time_release(self):
+        print('Slider released - time')
+        self.time_press_toggle = False
+        self.MplWidget.canvas.restore_region(self.bg)
+        annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
         if self.time_checkBox.isChecked():
-            self.t1_update_pushButton.setEnabled(True)
-            self.t2_update_pushButton.setEnabled(True)
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                                                              linewidth=1, color='#2989e1', alpha=0.2, visible=True)
+        else:
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                                                              linewidth=1, color='#2989e1', alpha=0.2, visible=False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def time_press(self):
+        self.time_press_toggle = True
+        print('Slider pressed - time line remove')
+        try:
+            self.time_line.remove()
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+        except:
+            pass
+        self.MplWidget.canvas.axes.draw_artist(self.time_line) #replace plotted line with animated line
+
+    def time_slider_update(self):
         dt = self.specifictime_timeEdit.dateTime().toPyDateTime()
-        #print(time2num(dt)[0])
         self.time_horizontalSlider.setValue(time2num(dt)[0])
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------PEOPLE_SLIDER---------------------------------------------------------------------------
+    def people_slider(self, value):
+        if self.people_press_toggle:
+            print('Slider Changed - people')
+            self.people_spinBox.setValue(value)
+            self.MplWidget.canvas.blit(self.MplWidget.canvas.axes.bbox)
 
-    def start_slider(self,value):
-        minute = value%60
-        hour = int((value - minute)/60)
-        #print(value,hour,minute)
-        hourdelta = datetime.timedelta(hours = hour, minutes = minute)
-        self.start_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
-        if self.start_horizontalSlider.value() > self.end_horizontalSlider.value():
-            self.end_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
-            self.end_horizontalSlider.setValue(value)
+            if self.people_checkBox.isChecked():
+                self.MplWidget.canvas.restore_region(self.bg)
+                annotate_people = self.people_spinBox.value()
+                self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],
+                                                                    [annotate_people, annotate_people],
+                                                                    linewidth=1, color='#2989e1', alpha=0.2, animated=True, visible=True)
+                self.MplWidget.canvas.axes.draw_artist(self.people_line)
+        else:
+            print('Numbeerchanged - people')
+            try:
+                self.people_line.remove()
+            except:
+                pass
+            annotate_people = self.people_spinBox.value()
+            if self.people_checkBox.isChecked():
+                self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],
+                                                                    [annotate_people, annotate_people],
+                                                                    linewidth=1, color='#2989e1', alpha=0.2, visible=True)
+            else:
+                self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],
+                                                                    [annotate_people, annotate_people],
+                                                                    linewidth=1, color='#2989e1', alpha=0.2, visible=False)
+            self.MplWidget.canvas.draw()
+            self.update_bg()
 
-    def start_slider1(self):
-        dt = self.start_timeEdit.dateTime().toPyDateTime()
-        #print(time2num(dt)[0])
-        self.start_horizontalSlider.setValue(time2num(dt)[0])
+    def people_release(self):
+        print('Slider released - people')
+        self.people_press_toggle = False
+        self.MplWidget.canvas.restore_region(self.bg)
+        annotate_people = self.people_spinBox.value()
+        if self.people_checkBox.isChecked():
+            self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],
+                                                                [annotate_people, annotate_people],
+                                                                linewidth=1, color='#2989e1', alpha=0.2, visible=True)
+        else:
+            self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],
+                                                                [annotate_people, annotate_people],
+                                                                linewidth=1, color='#2989e1', alpha=0.2, visible=False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
 
-    def end_slider(self,value):
-        minute = value%60
-        hour = int((value - minute)/60)
-        #print(value,hour,minute)
-        hourdelta = datetime.timedelta(hours = hour, minutes = minute)
-        self.end_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
-        if self.end_horizontalSlider.value() < self.start_horizontalSlider.value():
+    def people_press(self):
+        self.people_press_toggle = True
+        print('Slider pressed - people line remove')
+        try:
+            self.people_line.remove()
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+        except:
+            pass
+        self.MplWidget.canvas.axes.draw_artist(self.people_line)  # replace plotted line with animated line
+
+    def people_slider_update(self):
+        annotate_people = self.people_spinBox.value()
+        self.people_horizontalSlider.setValue(annotate_people)
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------START_SLIDER-----------------------------------------------------------------------------
+    def start_slider(self, value):
+        if self.start_press_toggle:
+            print('Slider Changed - start')
+            minute = value % 60
+            hour = int((value - minute) / 60)
+            hourdelta = datetime.timedelta(hours=hour, minutes=minute)
             self.start_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
-            self.start_horizontalSlider.setValue(value)
+            ######
+            if self.start_horizontalSlider.value() > self.end_horizontalSlider.value():
+                self.end_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
+                self.end_horizontalSlider.setValue(value)
+            ######
+            self.MplWidget.canvas.blit(self.MplWidget.canvas.axes.bbox)
 
-    def end_slider1(self):
-        dt = self.end_timeEdit.dateTime().toPyDateTime()
-        #print(time2num(dt)[0])
-        self.end_horizontalSlider.setValue(time2num(dt)[0])
+            if self.analysis_checkBox.isChecked():
+                self.MplWidget.canvas.restore_region(self.bg)
+                start_time = self.start_timeEdit.dateTime().toPyDateTime()
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, animated=True, visible=True)
+                self.MplWidget.canvas.axes.draw_artist(self.analine1)
+        else:
+            print('Timechanged - start')
+            try:
+                self.analine1.remove()
+            except:
+                pass
+            start_time = self.start_timeEdit.dateTime().toPyDateTime()
+            if self.analysis_checkBox.isChecked():
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, visible=True)
+            else:
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, visible=False)
+            self.MplWidget.canvas.draw()
+            self.update_bg()
 
+    def start_release(self):
+        print('Slider released - start')
+        self.start_press_toggle = False
+        self.MplWidget.canvas.restore_region(self.bg)
+        start_time = self.start_timeEdit.dateTime().toPyDateTime()
+        if self.analysis_checkBox.isChecked():
+            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                                                              linewidth=1, color='g', alpha=0.2, visible=True)
+        else:
+            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                                                              linewidth=1, color='g', alpha=0.2, visible=False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def start_press(self):
+        self.start_press_toggle = True
+        print('Slider pressed - start line remove')
+        try:
+            self.analine1.remove()
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+        except:
+            pass
+        self.MplWidget.canvas.axes.draw_artist(self.analine1)  # replace plotted line with animated line
+
+    def start_slider_update(self):
+        dt = self.start_timeEdit.dateTime().toPyDateTime()
+        self.start_horizontalSlider.setValue(time2num(dt)[0])
+        ######
+        if self.start_timeEdit.dateTime().toPyDateTime() > self.end_timeEdit.dateTime().toPyDateTime():
+            self.end_timeEdit.setDateTime(dt)
+            self.end_horizontalSlider.setValue(time2num(dt)[0])
+        ######
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------END_SLIDER-----------------------------------------------------------------------------
+    def end_slider(self, value):
+        if self.end_press_toggle:
+            print('Slider Changed - end')
+            minute = value % 60
+            hour = int((value - minute) / 60)
+            hourdelta = datetime.timedelta(hours=hour, minutes=minute)
+            self.end_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
+            ######
+            if self.end_horizontalSlider.value() < self.start_horizontalSlider.value():
+                self.start_timeEdit.setDateTime(datetime.datetime(2020,1,1,0,0,0)+hourdelta)
+                self.start_horizontalSlider.setValue(value)
+            ######
+            self.MplWidget.canvas.blit(self.MplWidget.canvas.axes.bbox)
+
+            if self.analysis_checkBox.isChecked():
+                self.MplWidget.canvas.restore_region(self.bg)
+                end_time = self.end_timeEdit.dateTime().toPyDateTime()
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, animated=True, visible=True)
+                self.MplWidget.canvas.axes.draw_artist(self.analine2)
+        else:
+            print('Timechanged - end')
+            try:
+                self.analine2.remove()
+            except:
+                pass
+            end_time = self.end_timeEdit.dateTime().toPyDateTime()
+            #end_time = datetime.datetime(2020,1,1,5,0,0,0)
+            if self.analysis_checkBox.isChecked():
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, visible=True)
+            else:
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                                                                  linewidth=1, color='g', alpha=0.2, visible=False)
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+
+    def end_release(self):
+        print('Slider released - end')
+        self.end_press_toggle =  False
+        self.MplWidget.canvas.restore_region(self.bg)
+        end_time = self.end_timeEdit.dateTime().toPyDateTime()
+        if self.analysis_checkBox.isChecked():
+            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                                                              linewidth=1, color='g', alpha=0.2, visible=True)
+        else:
+            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                                                              linewidth=1, color='g', alpha=0.2, visible=False)
+        self.MplWidget.canvas.draw()
+        self.update_bg()
+
+    def end_press(self):
+        self.end_press_toggle = True
+        print('Slider pressed - end line remove')
+        try:
+            self.analine2.remove()
+            self.MplWidget.canvas.draw()
+            self.update_bg()
+        except:
+            pass
+        self.MplWidget.canvas.axes.draw_artist(self.analine2)  # replace plotted line with animated line
+
+    def end_slider_update(self):
+        dte = self.end_timeEdit.dateTime().toPyDateTime()
+        self.end_horizontalSlider.setValue(time2num(dte)[0])
+        ######
+        if self.end_timeEdit.dateTime().toPyDateTime() < self.start_timeEdit.dateTime().toPyDateTime():
+            self.start_timeEdit.setDateTime(dte)
+            self.start_horizontalSlider.setValue(time2num(dte)[0])
+        ######
+
+
+# ----------------------------------------------------------------------------------------------------------------------
 
     #-------------------ANALYSIS_BUTTONS-------------------------------------
     def fullday(self):
@@ -527,7 +946,7 @@ class MatplotlibWidget(QMainWindow):
         self.week = output[2]
         self.years = output[3]
         self.dates = output[4]
-        #print('Start of update_graph: ', self.days, self.months, self.week, self.years, self.dates)
+        print('Start of update_graph: ', self.days, self.months, self.week, self.years, self.dates)
 
         self.MplWidget.canvas.axes.clear()
         self.progressBar.setValue(0)
@@ -560,10 +979,11 @@ class MatplotlibWidget(QMainWindow):
             del self.years[value]
             del self.dates[value]
 
-        #print('After deletion in update_graph: ', self.days, self.months, self.week, self.years, self.dates)
+        print('After deletion in update_graph: ', self.days, self.months, self.week, self.years, self.dates)
         #-------------------------------------------------
 
         #----------------ADAPTIVE LEGEND--------------------
+        global state
         if self.rawdata_checkBox.isChecked() and self.smootheddata_checkBox.isChecked():
             state = 1
         elif self.smootheddata_checkBox.isChecked():
@@ -579,6 +999,7 @@ class MatplotlibWidget(QMainWindow):
         xfmt = mdates.DateFormatter('%H:%M')
         ax.xaxis.set_minor_locator(AutoMinorLocator())
         ax.xaxis.set_major_formatter(xfmt)
+        ax.yaxis.set_major_locator(MaxNLocator(integer=True))                                                            # So that y-axis is integer until scale is <1
 
 
         #SET X_AXIS
@@ -599,7 +1020,7 @@ class MatplotlibWidget(QMainWindow):
         for index0 in range(len(self.dates)):
             myLists.append([0] * 1440)
 
-        conn = sqlite3.connect('PG2020_SQL_v1_00.db')
+        conn = sqlite3.connect('PG2020_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -638,88 +1059,132 @@ class MatplotlibWidget(QMainWindow):
 
             yourLists[index0] = vec
 
-        #print('myLists: ',len(myLists))
-        #print(myLists)
-        #print('yourLists: ',len(yourLists))
-        #print(yourLists)
+        for day in range(len(myLists)):
+            print(myLists[day])
+            #print(yourLists[day])
 
+        global lines, lined_raw, lined_smooth, raw_lines, smooth_lines, alpha_raw, alpha_smooth
+        #lines = [] #all lines
+        raw_lines = [] #raw lines
+        smooth_lines = [] #smooth lines
+        lined_raw = {}
+        lined_smooth = {}
+        alpha_smooth = {}
+        alpha_raw = {}
+
+        labels = []
+        print('Before lines plot: ', self.days, self.months, self.week, self.years, self.dates)
         for index in range(len(myLists)):
             #print(myLists[index])
 
-            dict_raw = {1: '_nolegend_',
-                        2: '_nolegend_',
-                        3: self.week[index] + ' ' + str(self.dates[index]),
-                        4: '_nolegend_'}
-            dict_smooth = {1: self.week[index] + ' ' + str(self.dates[index]),
-                           2: self.week[index] + ' ' + str(self.dates[index]),
-                           3: '_nolegend_',
-                           4: '_nolegend_'}
+            if not myLists[index].count(None) == len(myLists[index]):
+                labels.append(self.week[index] + ' ' + str(self.dates[index]))
+                print(myLists[index].count(None),len(myLists[index]),self.dates[index])
+                line1, = self.MplWidget.canvas.axes.plot(time_vec, myLists[index], linewidth=1, label=self.week[index] + ' ' + str(self.dates[index])) #visible=self.rawdata_checkBox.isChecked()
+                line2, = self.MplWidget.canvas.axes.plot(time_vec, yourLists[index], linewidth=1, label=self.week[index] + ' ' + str(self.dates[index])) #visible=smootheddata_checkBox.isChecked()
+                print(self.dates[index])
+                #lines.append(line1)
+                #lines.append(line2)
+                raw_lines.append(line1)
+                smooth_lines.append(line2)
 
-            if state == 1 and not myLists[index].count(None) == len(myLists[index]):
-                self.MplWidget.canvas.axes.plot(time_vec, myLists[index], linewidth=1, label=dict_raw[1], visible=self.rawdata_checkBox.isChecked())
-                self.MplWidget.canvas.axes.plot(time_vec, yourLists[index], linewidth=1, label=dict_smooth[1], visible=self.smootheddata_checkBox.isChecked())
-            elif state == 2 and not myLists[index].count(None) == len(myLists[index]):
-                self.MplWidget.canvas.axes.plot(time_vec, yourLists[index], linewidth=1, label=dict_smooth[2], visible=self.smootheddata_checkBox.isChecked())
-            elif state == 3 and not myLists[index].count(None) == len(myLists[index]):
-                self.MplWidget.canvas.axes.plot(time_vec, myLists[index], linewidth=1, label=dict_raw[3], visible=self.rawdata_checkBox.isChecked())
-            elif state == 4:
-                pass
             self.progressBar.setValue(round((index + 1) * 100 / (len(myLists)), 2))
 
+        #-----------------GRIDLINES-------------------
+        self.MplWidget.canvas.axes.grid(alpha = 0.25)
+        self.gridlines_visibility()
+        #---------------------------------------------
 
+        #------------------------------LEGENDS-------------------------------------------------
+        self.leg = self.MplWidget.canvas.axes.legend(raw_lines,labels,loc='upper left', title='Raw Data')
+        self.leg2 = self.MplWidget.canvas.axes.legend(smooth_lines,labels,loc='upper left', bbox_to_anchor=(0.13,1) , title='Smoothed Data')
+
+        self.MplWidget.canvas.axes.add_artist(self.leg) #add back removed artist
+        #SET BOTH VISIBLE INITIALLY
+        self.legend_visibility()
+        #--------------------------------------------------------------------------------------
+
+        self.update_bg()
         #---------------------ANNOTATIONS---------------------------------
-        if self.time_checkBox.isChecked():
-            try:
-                annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()#.time()
-                # hour = annotate_time.hour
-                # minute = annotate_time.minute
-                # minutes = (hour * 60) + minute
-                # self.MplWidget.canvas.axes.plot([time_vec[minutes],time_vec[minutes]], [0,130], linewidth=1, color='r')
-                self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130], linewidth=1, color='r',alpha=0.2)
-            except:
-                pass
+        #VERTICAL_TIME_LINE
+        try:
+            annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()#.time()
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time,annotate_time],[0, 130], linewidth=1, color='#2989e1',alpha=0.2)
+        except:
+            pass
 
-        if self.meandata_checkBox.isChecked():
-            for index in range(1440):
-                if not none_index[index] == 0:
-                    mean_data[index] = (mean_data[index]/none_index[index])
-                else:
-                    mean_data[index] = None
-            try:
-                self.MplWidget.canvas.axes.plot(time_vec,mean_data, linewidth=2, color='r')
-            except:
-                pass
+        #HORIZONTAL_PEOPLE_LINE
+        try:
+            annotate_people = self.people_spinBox.value()
+            self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],[annotate_people, annotate_people], linewidth=1, color='#2989e1', alpha=0.2)
+        except:
+            pass
 
-        #-----------------------GRIDLINES/LEGEND---------------------------
-        if self.gridlines_checkBox.isChecked() == True:
-            self.MplWidget.canvas.axes.grid(True)
-        else:
-            self.MplWidget.canvas.axes.grid(False)
+        #MEAN_RAW_DATA_LINE
+        for index in range(1440):
+            if not none_index[index] == 0:
+                mean_data[index] = (mean_data[index]/none_index[index])
+            else:
+                mean_data[index] = None
+        try:
+            self.line_mean, = self.MplWidget.canvas.axes.plot(time_vec,mean_data, linewidth=2, color='r')
+        except:
+            print('No data to create mean line.')
+        #----------------------------------------------------------------------
 
-        if self.legend_checkBox.isChecked() == True:
-            self.MplWidget.canvas.axes.legend()
-        else:
-            self.MplWidget.canvas.axes.legend().remove()
-        #-----------------------------------------------------------
+        #-------------------LEGEND_PICKING-------------------------------------------------
+        try:
+            for legline_raw, origline_raw in zip(self.leg.get_lines(), raw_lines):
+                legline_raw.set_picker(True)  # Enable picking on the legend line.
+                print('picker')
+                lined_raw[legline_raw] = origline_raw
+
+            for legline_raw in self.leg.get_lines():
+                alpha_raw[legline_raw] = True
+                #=====If want non-selected data at time of update to not automatically be shown when turned on======#
+                # if self.rawdata_checkBox.isChecked():
+                #     alpha_raw[legline_raw] = True
+                # else:
+                #     alpha_raw[legline_raw] = False
+
+            for legline_smooth, origline_smooth in zip(self.leg2.get_lines(), smooth_lines):
+                legline_smooth.set_picker(True)
+                lined_smooth[legline_smooth] = origline_smooth
+
+            for legline_smooth in self.leg2.get_lines():
+                alpha_smooth[legline_smooth] = True
+                #=====If want non-selected data at time of update to not automatically be shown when turned on======#
+                # if self.smootheddata_checkBox.isChecked():
+                #     alpha_smooth[legline_smooth] = True
+                # else:
+                #     alpha_smooth[legline_smooth] = False
+        except:
+            # There are no lines/legends (no data).
+            pass
+
+        #True if visible when line updated and False if invisible when line updated.
+        #print(alpha_raw)    # Dictionary {legline_raw: {True/False}}
+        #print(alpha_smooth) # Dictionary {legline_smooth: {True/False}}
+
+        self.raw_visiblility()
+        self.smooth_visibility()
+        self.mean_visibility()
+        self.time_visibility()
+        self.people_visibility()
 
 
+        #----------------------------------------------------------------------------------
 
-        self.MplWidget.canvas.draw()
+        #self.MplWidget.canvas.draw()
         self.update_analysis()
 
+        #DRAW ANIMATED LINES
+        self.MplWidget.canvas.axes.draw_artist(self.time_line)
+        self.MplWidget.canvas.axes.draw_artist(self.people_line)
+        self.MplWidget.canvas.axes.draw_artist(self.analine1)
+        self.MplWidget.canvas.axes.draw_artist(self.analine2)
 
-    def update_options(self):
-        #self.update_analysis()
-        pass
-        ##########BUG############::::Analysis window prints multiple (from self.update_analysis)
 
-        '''
-        #For future updates when automatic line updates used.
-        #self.line.remove()
-        print(self.MplWidget.canvas.axes.lines)
-        self.MplWidget.canvas.axes.lines[-3].remove()
-        self.MplWidget.canvas.draw()
-        '''
 
     def update_analysis(self):
         #print('Start of update_analysis: ', self.days , self.months, self.week, self.years, self.dates)
@@ -732,14 +1197,17 @@ class MatplotlibWidget(QMainWindow):
         end_datetime = self.end_timeEdit.dateTime().toPyDateTime()
         start = time2num(start_datetime) #(num,hour,min)
         end = time2num(end_datetime)     #(num,hour,min)
+        print(start,end)
         analysis_range = end[0]-start[0]+1
-        if self.analysis_checkBox.isChecked():
-            # self.MplWidget.canvas.axes.plot([start[0], start[0]], [0, 130], linewidth=1, color='g')
-            # self.MplWidget.canvas.axes.plot([end[0],end[0]], [0, 130], linewidth=1, color='g')
-            self.analine1 = self.MplWidget.canvas.axes.plot([start_datetime, start_datetime], [0, 130], linewidth=1, color='g', alpha=0.2)
-            self.analine2 = self.MplWidget.canvas.axes.plot([end_datetime,end_datetime], [0, 130], linewidth=1, color='g', alpha=0.2)
-            self.MplWidget.canvas.draw()
+        try:
+            self.analine1.remove()
+            self.analine2.remove()
+        except:
+            pass
+        self.analine1, = self.MplWidget.canvas.axes.plot([start_datetime,start_datetime],[0, 130], linewidth=1, color='g', alpha=0.2)
+        self.analine2, = self.MplWidget.canvas.axes.plot([end_datetime,end_datetime],[0, 130], linewidth=1, color='g', alpha=0.2)
 
+        self.analine_visibility()
         #----------------------LOAD_DATA_SQL----------------------------------------------------
         self.mean_list = []
 
@@ -747,7 +1215,7 @@ class MatplotlibWidget(QMainWindow):
         for index0 in range(len(self.dates)):
             myLists.append([0]*analysis_range)
 
-        conn = sqlite3.connect('PG2020_SQL_v1_00.db')
+        conn = sqlite3.connect('PG2020_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -793,6 +1261,7 @@ class MatplotlibWidget(QMainWindow):
 #-------------DRIVER_CODE------------------
 #def main():
 app = QApplication([])
+app.setStyle('Fusion')
 window = MatplotlibWidget()
 window.show()
 window.today()
