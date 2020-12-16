@@ -1,5 +1,5 @@
 # ------------------------------------------------------
-# ------------------ PureGymGUI_v1_00.py -------------------
+# ------------------ PureGymGUI_v1_01.py -------------------
 # ------------------------------------------------------
 
 ###GUI_IMPORT
@@ -72,11 +72,11 @@ class MatplotlibWidget(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-        loadUi("PureGymGUI_v1_00.ui", self)
+        loadUi("PureGymGUI_v1_01.ui", self)
         QMainWindow.showMaximized(self)
 
-        self.setWindowTitle("PureGym Analytics GUI [v1.00]")
-        self.label_title.setText('PureGym Analysis    [v1.00]')
+        self.setWindowTitle("PureGym Analytics GUI [v1.01]")
+        self.label_title.setText('PureGym Analysis    [v1.01]')
         self.addToolBar(NavigationToolbar(self.MplWidget.canvas, self))
         self.line.setGeometry(QtCore.QRect(350, 10, 20, 1000))
         self.MplWidget.setGeometry(QtCore.QRect(370, 10, 1530, 950))  #(xpos,ypos,xwidth,yheight)
