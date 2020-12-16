@@ -1,12 +1,14 @@
 # PureGym_Project
 
-> PureGym data acquisition and analysis.
+> **Abstract:** The PureGym project contains tools for acquisition, visualisation and analysis of gym attendance data.
 
-## =================PureGymAnalysis[v1.01]=================
+## Current Version: PureGymAnalysis[v1.01]
 
-### ___UPDATES___
+### _BUG FIXES_
 
-### ___FEATURES___
+### _UPDATES_
+
+### _FEATURES_
 
 #### DATA TYPES:
 
