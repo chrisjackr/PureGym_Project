@@ -3,6 +3,7 @@
 # This script runs 24/7 to parse the website for gym numbers and saves them to the SQL DATABASE.
 # Email address and pin must be added.
 # A new database can be made if a gym other than Bishop's Court Exeter is being recorded.
+# May need to answer questionnaire on first time login for automated login to work.
 
 ###------------------IMPORTS-------------------###
 from selenium import webdriver
@@ -62,11 +63,11 @@ import os
 #---------------------WEBSCRAPE------------------#
 try:
     # PATH = "C:\Program Files (x86)\chromedriver.exe"
-    #PATH = r"C:\Users\Owner\.wdm\drivers\chromedriver\win32\87.0.4280.20\chromedriver.exe"
-    PATH = r"C:\Users\Owner\.wdm\drivers\chromedriver\win32\87.0.4280.88\chromedriver.exe"
+    # PATH = r"C:\Users\Owner\.wdm\drivers\chromedriver\win32\87.0.4280.20\chromedriver.exe"      
+    PATH = r"C:\Users\Owner\.wdm\drivers\chromedriver\win32\87.0.4280.88\chromedriver.exe"          #This is where chromedriver is saved for your computer
     driver = webdriver.Chrome(PATH)
 except:
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome(ChromeDriverManager().install())                                      #If webdriver cannot locate up-to-date chromedriver.exe, then it will automatically download necessary file and use that.
     print('NEW DRIVER CHANGE PATH')
 
 driver.get('https://www.puregym.com/members/')
@@ -93,8 +94,8 @@ except:
         print('Could not enter login details.')
         quit()
 
-email.send_keys("email@hotmail.co.uk")                                             #!!!_ADD_EMAIL_ADDRESS_!!!#
-pin.send_keys("8-digit-pin")                                                       #!!!_ADD_PIN_NUMBER_!!!#
+email.send_keys("email@hotmail.co.uk")                             #!!!_ADD_EMAIL_ADDRESS_!!!#
+pin.send_keys("8-digit-pin")                                       #!!!_ADD_PIN_NUMBER_!!!#
 pin.send_keys(Keys.ENTER)
 #---------------------------------------#
 
@@ -112,6 +113,8 @@ beg = datetime.datetime.today()
 secs = int(beg.strftime('%S'))
 if secs>10:
     time.sleep(61-secs)
+
+databases = ['PG2020_SQL.db','PG2020_SQL_CLEAN.db']    
 
 while True:
 
@@ -149,32 +152,21 @@ while True:
         year =  d.strftime('%y')
 
         num = int((hour * 60) + minute) + 1 #plus 1 bc first time column in table is t1
+        
+        for database in databases:
+            try:
+                conn_write = sqlite3.connect(database)
+                curs_write = conn_write.cursor()
+                curs_write.execute("PRAGMA journal_mode=WAL;") #Activate 'Write-Ahead Logging'
 
-        try:
-            conn_write = sqlite3.connect('PG2020_SQL.db')
-            curs_write = conn_write.cursor()
-            curs_write.execute("PRAGMA journal_mode=WAL;") #Activate 'Write-Ahead Logging'
+                curs_write.execute("UPDATE puregym_table SET t{} = {} WHERE Day = '{}/{}/{}'".format(num,output2,day,month,year))
+                conn_write.commit()
 
-            curs_write.execute("UPDATE puregym_table SET t{} = {} WHERE Day = '{}/{}/{}'".format(num,output2,day,month,year))
-            conn_write.commit()
+                curs_write.close()
+                conn_write.close()
+            except:
+                print('Err: Could not write to '+ database)
 
-            curs_write.close()
-            conn_write.close()
-        except:
-            print('Err: Could not write to PG2020_SQL.db')
-        try:
-            conn_write = sqlite3.connect('PG2020_SQL_CLEAN.db')
-            curs_write = conn_write.cursor()
-            curs_write.execute("PRAGMA journal_mode=WAL;")  # Activate 'Write-Ahead Logging'
-
-            curs_write.execute(
-                "UPDATE puregym_table SET t{} = {} WHERE Day = '{}/{}/{}'".format(num, output2, day, month, year))
-            conn_write.commit()
-
-            curs_write.close()
-            conn_write.close()
-        except:
-            print('Err: Could not write to PG2020_SQL_CLEAN.db')
         #-----------------------------------------------------------------#
 
         #-------------------------PRINT_UPDATE (safe to exit after print)---------------------------------------#
