@@ -1,7 +1,10 @@
-# PureGym
-# This script runs 24/7 to parse the website for gym numbers and saves them to the SQL DATABASE.
+# PureGym_webscraper.py
 
-###IMPORTS
+# This script runs 24/7 to parse the website for gym numbers and saves them to the SQL DATABASE.
+# Email address and pin must be added.
+# A new database can be made if a gym other than Bishop's Court Exeter is being recorded.
+
+###------------------IMPORTS-------------------###
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -12,18 +15,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from pathlib import Path
 
-from matplotlib import pyplot as plt
-from matplotlib import pyplot as plt
-
-from openpyxl import Workbook, load_workbook
+#from openpyxl import Workbook, load_workbook
 import sqlite3
 import pyautogui
 
 import time
 import datetime
-import shutil
+#import shutil
 import os
-import calendar
 
 #========================================================NEW_TABLE===================================================#
 # ###--------------CREATE_TABLE------------------###
@@ -61,7 +60,6 @@ import calendar
 
 
 #---------------------WEBSCRAPE------------------#
-#def puregym():
 try:
     # PATH = "C:\Program Files (x86)\chromedriver.exe"
     #PATH = r"C:\Users\Owner\.wdm\drivers\chromedriver\win32\87.0.4280.20\chromedriver.exe"
@@ -95,13 +93,13 @@ except:
         print('Could not enter login details.')
         quit()
 
-email.send_keys("email@hotmail.co.uk")
-pin.send_keys("8-digit-pin")
+email.send_keys("email@hotmail.co.uk")                                             #!!!_ADD_EMAIL_ADDRESS_!!!#
+pin.send_keys("8-digit-pin")                                                       #!!!_ADD_PIN_NUMBER_!!!#
 pin.send_keys(Keys.ENTER)
 #---------------------------------------#
 
 #--------Driver 1 New tab--------------#
-# Do not know how to switch gym on the website
+# Cannot seem to switch gym on website.
 #--------------------------------------#
 
 time.sleep(5)
