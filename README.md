@@ -7,7 +7,7 @@
 1. **PureGymGUI.py** - Main script run to start application
 2. **PureGymGUI.ui** - _User Interface_ file containing code to display GUI
 3. **PG2020.db** - Database containing raw time series collected using webscraper script
-4. **PG2020.db** - Database containing cleaned copy of the time series data
+4. **PG2020_CLEAN.db** - Database containing cleaned copy of the time series data
 4. **mplwidget.py** - Used by the main script to display the graph
 5. **PureGymFunctions.py** - Auxilary functions imported into the main script
 
