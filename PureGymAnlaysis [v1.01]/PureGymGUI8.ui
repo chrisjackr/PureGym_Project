@@ -1,0 +1,3997 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1291</width>
+    <height>996</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="Analysis">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QScrollArea" name="LeftscrollArea">
+          <property name="minimumSize">
+           <size>
+            <width>360</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>360</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>343</width>
+             <height>919</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="5" column="0">
+             <widget class="QTabWidget" name="tabWidget">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="tab_1">
+               <attribute name="title">
+                <string>Specific Day</string>
+               </attribute>
+               <widget class="QDateEdit" name="t1_specificday_dateEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>39</x>
+                  <y>10</y>
+                  <width>81</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t1_today_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>220</x>
+                  <y>10</y>
+                  <width>81</width>
+                  <height>23</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Today</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t1_yesterday_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>130</x>
+                  <y>10</y>
+                  <width>81</width>
+                  <height>23</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Yesterday</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t1_update_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>120</x>
+                  <y>190</y>
+                  <width>181</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Update</string>
+                </property>
+                <property name="shortcut">
+                 <string>Return</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="t1_specificweekday_label">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>21</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Sun</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="t1_specificweekday_label_2">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>40</y>
+                  <width>91</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Notes:</string>
+                </property>
+               </widget>
+               <widget class="QPlainTextEdit" name="plainTextEdit">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>60</y>
+                  <width>291</width>
+                  <height>121</height>
+                 </rect>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t1_save_pushButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>190</y>
+                  <width>81</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Save Notes</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="saved_label">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>190</y>
+                  <width>81</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Plain</enum>
+                </property>
+                <property name="text">
+                 <string>Notes saved</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::RichText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="tab_2">
+               <attribute name="title">
+                <string>Select Days</string>
+               </attribute>
+               <widget class="QWidget" name="verticalLayoutWidget">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>82</width>
+                  <height>201</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout">
+                 <item>
+                  <widget class="QCheckBox" name="t2_monday_checkBox">
+                   <property name="text">
+                    <string>Monday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_tuesday_checkBox">
+                   <property name="text">
+                    <string>Tuesday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_wednesday_checkBox">
+                   <property name="text">
+                    <string>Wednesday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_thursday_checkBox">
+                   <property name="text">
+                    <string>Thursday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_friday_checkBox">
+                   <property name="text">
+                    <string>Friday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_saturday_checkBox">
+                   <property name="text">
+                    <string>Saturday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="t2_sunday_checkBox">
+                   <property name="text">
+                    <string>Sunday</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="Line" name="line_2">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>10</y>
+                  <width>20</width>
+                  <height>201</height>
+                 </rect>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+               <widget class="QGroupBox" name="t2_selectrange_groupBox">
+                <property name="geometry">
+                 <rect>
+                  <x>110</x>
+                  <y>10</y>
+                  <width>201</width>
+                  <height>141</height>
+                 </rect>
+                </property>
+                <property name="title">
+                 <string>Select Range:</string>
+                </property>
+                <widget class="QDateEdit" name="t2_end_dateEdit">
+                 <property name="geometry">
+                  <rect>
+                   <x>110</x>
+                   <y>50</y>
+                   <width>81</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="t2_min_label">
+                 <property name="geometry">
+                  <rect>
+                   <x>20</x>
+                   <y>20</y>
+                   <width>31</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Start:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+                <widget class="QDateEdit" name="t2_start_dateEdit">
+                 <property name="geometry">
+                  <rect>
+                   <x>110</x>
+                   <y>20</y>
+                   <width>81</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="t2_max_label">
+                 <property name="geometry">
+                  <rect>
+                   <x>20</x>
+                   <y>50</y>
+                   <width>31</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>End:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="t2_selectweekdaystart_label">
+                 <property name="geometry">
+                  <rect>
+                   <x>80</x>
+                   <y>20</y>
+                   <width>21</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Sun</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="t2_selectweekdayend_label">
+                 <property name="geometry">
+                  <rect>
+                   <x>80</x>
+                   <y>50</y>
+                   <width>21</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Sun</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="t2_pastmonth_pushButton">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>110</y>
+                   <width>81</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="toolTip">
+                  <string>Show past 28 full days.</string>
+                 </property>
+                 <property name="text">
+                  <string>Past  Month</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="t2_onemonth_pushButton">
+                 <property name="geometry">
+                  <rect>
+                   <x>110</x>
+                   <y>110</y>
+                   <width>81</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="toolTip">
+                  <string>Start date plus 28 days.</string>
+                 </property>
+                 <property name="text">
+                  <string>+ 1 Month</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="t2_pastweek_pushButton">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>80</y>
+                   <width>81</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="toolTip">
+                  <string>Show past 7 full days.</string>
+                 </property>
+                 <property name="text">
+                  <string>Past Week</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="t2_oneweek_pushButton">
+                 <property name="geometry">
+                  <rect>
+                   <x>110</x>
+                   <y>80</y>
+                   <width>81</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="toolTip">
+                  <string>Start date plus 7 days.</string>
+                 </property>
+                 <property name="text">
+                  <string>+ 1 Week</string>
+                 </property>
+                </widget>
+               </widget>
+               <widget class="QPushButton" name="t2_update_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>120</x>
+                  <y>190</y>
+                  <width>181</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Update</string>
+                </property>
+                <property name="shortcut">
+                 <string>Return</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t2_deselectall_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>220</x>
+                  <y>160</y>
+                  <width>81</width>
+                  <height>23</height>
+                 </rect>
+                </property>
+                <property name="toolTip">
+                 <string>Deselect all weekdays.</string>
+                </property>
+                <property name="text">
+                 <string>Deselect All</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t2_selectall_pushButton">
+                <property name="geometry">
+                 <rect>
+                  <x>120</x>
+                  <y>160</y>
+                  <width>81</width>
+                  <height>23</height>
+                 </rect>
+                </property>
+                <property name="toolTip">
+                 <string>Select all weekdays.</string>
+                </property>
+                <property name="text">
+                 <string>Select All</string>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="tab_3">
+               <attribute name="title">
+                <string>Calendar</string>
+               </attribute>
+               <widget class="QCalendarWidget" name="t3_calendarWidget">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>321</width>
+                  <height>183</height>
+                 </rect>
+                </property>
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Highlight">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>225</red>
+                      <green>225</green>
+                      <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="HighlightedText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Link">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>225</red>
+                      <green>225</green>
+                      <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Highlight">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>225</red>
+                      <green>225</green>
+                      <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="HighlightedText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Link">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>225</red>
+                      <green>225</green>
+                      <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Highlight">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>120</green>
+                      <blue>215</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="HighlightedText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Link">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>225</red>
+                      <green>225</green>
+                      <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="selectedDate">
+                 <date>
+                  <year>2020</year>
+                  <month>10</month>
+                  <day>1</day>
+                 </date>
+                </property>
+                <property name="minimumDate">
+                 <date>
+                  <year>2020</year>
+                  <month>10</month>
+                  <day>1</day>
+                 </date>
+                </property>
+                <property name="maximumDate">
+                 <date>
+                  <year>2021</year>
+                  <month>12</month>
+                  <day>31</day>
+                 </date>
+                </property>
+                <property name="selectionMode">
+                 <enum>QCalendarWidget::SingleSelection</enum>
+                </property>
+                <property name="verticalHeaderFormat">
+                 <enum>QCalendarWidget::ISOWeekNumbers</enum>
+                </property>
+                <property name="navigationBarVisible">
+                 <bool>true</bool>
+                </property>
+                <property name="dateEditEnabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t3_clearselection_pushButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>190</y>
+                  <width>81</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Clear</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="t3_update_pushButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>120</x>
+                  <y>190</y>
+                  <width>181</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Update</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>50</y>
+                  <width>301</width>
+                  <height>111</height>
+                 </rect>
+                </property>
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>120</red>
+                      <green>120</green>
+                      <blue>120</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>120</red>
+                      <green>120</green>
+                      <blue>120</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>120</red>
+                      <green>120</green>
+                      <blue>120</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>18</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>WORK IN PROGRESS</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+              <property name="textVisible">
+               <bool>false</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+              <property name="textDirection">
+               <enum>QProgressBar::TopToBottom</enum>
+              </property>
+              <property name="format">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QGroupBox" name="smooth_groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Smoothing:</string>
+              </property>
+              <widget class="QSlider" name="smooth_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>30</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>30</number>
+               </property>
+               <property name="singleStep">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>8</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="invertedAppearance">
+                <bool>false</bool>
+               </property>
+               <property name="invertedControls">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="smooth_spinBox">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>30</y>
+                 <width>31</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>Window size (mins) over which value are averaged
+for the central point in the smoothed data.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>59</number>
+               </property>
+               <property name="singleStep">
+                <number>2</number>
+               </property>
+               <property name="value">
+                <number>15</number>
+               </property>
+              </widget>
+              <widget class="QLabel" name="smooth_label">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>30</y>
+                 <width>71</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Window Size:</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QGroupBox" name="annotations_groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>90</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>90</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Annotations:</string>
+              </property>
+              <widget class="QCheckBox" name="time_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>   Time:</string>
+               </property>
+              </widget>
+              <widget class="QSlider" name="time_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>30</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="maximum">
+                <number>1439</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QTimeEdit" name="specifictime_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>X-value of vertical line.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="people_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>60</y>
+                 <width>91</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>People:</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QSlider" name="people_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>60</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="maximum">
+                <number>124</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="people_spinBox">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>60</y>
+                 <width>61</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>Y-value of horizontal line.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="maximum">
+                <number>124</number>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+              </property>
+              <item>
+               <widget class="QGroupBox" name="datatypes_groupBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="title">
+                 <string>Data Types:</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_2">
+                 <item row="0" column="0">
+                  <widget class="QCheckBox" name="rawdata_checkBox">
+                   <property name="text">
+                    <string>Raw Data</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QCheckBox" name="meandata_checkBox">
+                   <property name="text">
+                    <string>Mean Data</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QCheckBox" name="smootheddata_checkBox">
+                   <property name="text">
+                    <string>Smoothed Data</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="options_groupBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="title">
+                 <string>Options:</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_3">
+                 <item>
+                  <widget class="QCheckBox" name="gridlines_checkBox">
+                   <property name="text">
+                    <string>Gridlines</string>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="legend_checkBox">
+                   <property name="text">
+                    <string>Legend</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="analysis_checkBox">
+                   <property name="text">
+                    <string>Analysis Window</string>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_title">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Yu Gothic UI Semibold</family>
+                <pointsize>20</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="text">
+               <string>PureGym: Data Viewer</string>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QGroupBox" name="analysis_groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Analysis:</string>
+              </property>
+              <widget class="QTimeEdit" name="start_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>Start time over which statistics calculated.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="end_label">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>60</y>
+                 <width>31</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>End:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="start_label">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>30</y>
+                 <width>31</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Start:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+              <widget class="QTimeEdit" name="end_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>60</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>End time over which statistics calculated.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QSlider" name="end_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>149</x>
+                 <y>60</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QSlider" name="start_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>149</x>
+                 <y>30</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="Line" name="line_3">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>120</y>
+                 <width>301</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QWidget" name="horizontalLayoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>90</y>
+                 <width>303</width>
+                 <height>31</height>
+                </rect>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="spacing">
+                 <number>7</number>
+                </property>
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetFixedSize</enum>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="fullday_pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Start: End:</string>
+                  </property>
+                  <property name="text">
+                   <string>Full Day</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="day_pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Start: End:</string>
+                  </property>
+                  <property name="text">
+                   <string>Day</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="morning_pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Start: End:</string>
+                  </property>
+                  <property name="text">
+                   <string>Morning</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="evening_pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Start: End:</string>
+                  </property>
+                  <property name="text">
+                   <string>Evening</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="gridLayoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>140</y>
+                 <width>141</width>
+                 <height>110</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="max_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="min_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="max_label">
+                  <property name="text">
+                   <string>Maximum:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLabel" name="min_var_label">
+                  <property name="text">
+                   <string>min_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="min_label">
+                  <property name="text">
+                   <string>Minimum:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="max_var_label">
+                  <property name="text">
+                   <string>max_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLabel" name="md_var_label">
+                  <property name="text">
+                   <string>md_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="md_label_2">
+                  <property name="text">
+                   <string>MD:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="md_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="sd_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="sd_label_2">
+                  <property name="text">
+                   <string>SD:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="sd_var_label">
+                  <property name="text">
+                   <string>sd_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QPushButton" name="update_analysis_pushButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>260</y>
+                 <width>300</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>140</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>Update Analysis</string>
+               </property>
+              </widget>
+              <widget class="QWidget" name="gridLayoutWidget_2">
+               <property name="geometry">
+                <rect>
+                 <x>170</x>
+                 <y>140</y>
+                 <width>141</width>
+                 <height>110</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="2">
+                 <widget class="QLabel" name="mean_var_label">
+                  <property name="text">
+                   <string>mean_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="mean_label">
+                  <property name="text">
+                   <string>Mean:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="mean_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="mode_var_label">
+                  <property name="text">
+                   <string>mode_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="median_label">
+                  <property name="text">
+                   <string>Median:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="median_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="mode_label">
+                  <property name="text">
+                   <string>Mode:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="mode_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLabel" name="median_var_label">
+                  <property name="text">
+                   <string>med_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="range_checkBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="range_label">
+                  <property name="text">
+                   <string>Range:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLabel" name="range_var_label">
+                  <property name="text">
+                   <string>range_var</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MplWidget" name="MplWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Statistics"/>
+      <widget class="QWidget" name="MachineLearning"/>
+      <widget class="QWidget" name="DatabaseEditor">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="minimumSize">
+           <size>
+            <width>360</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>360</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>343</width>
+             <height>919</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_title_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Yu Gothic UI Semibold</family>
+                <pointsize>20</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="text">
+               <string>PureGym: Data Editor</string>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="PG2020_groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>155</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>155</height>
+               </size>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <widget class="QLabel" name="editor_weekday_label">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>20</y>
+                 <width>31</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Sun</string>
+               </property>
+              </widget>
+              <widget class="QDateEdit" name="editor_dateEdit">
+               <property name="geometry">
+                <rect>
+                 <x>50</x>
+                 <y>20</y>
+                 <width>81</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimumDateTime">
+                <datetime>
+                 <hour>0</hour>
+                 <minute>0</minute>
+                 <second>0</second>
+                 <year>2020</year>
+                 <month>10</month>
+                 <day>1</day>
+                </datetime>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="editor_load_pushButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>80</y>
+                 <width>81</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Load</string>
+               </property>
+               <property name="shortcut">
+                <string>Ctrl+S</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="editor_save_pushButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>220</x>
+                 <y>80</y>
+                 <width>81</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="editor_marker_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>130</x>
+                 <y>50</y>
+                 <width>71</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Markers</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="editor_reset_pushButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>120</x>
+                 <y>80</y>
+                 <width>81</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Reset</string>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="editor_gridlines_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>50</y>
+                 <width>71</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Gridlines</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QProgressBar" name="editor_progressBar">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>120</y>
+                 <width>300</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
+                 <strikeout>false</strikeout>
+                </font>
+               </property>
+               <property name="maximum">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>-1</number>
+               </property>
+               <property name="textVisible">
+                <bool>false</bool>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="invertedAppearance">
+                <bool>false</bool>
+               </property>
+               <property name="textDirection">
+                <enum>QProgressBar::TopToBottom</enum>
+               </property>
+               <property name="format">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="showtable_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>230</x>
+                 <y>50</y>
+                 <width>71</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="statusTip">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string> Table</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="none_lineEdit_2">
+               <property name="geometry">
+                <rect>
+                 <x>260</x>
+                 <y>20</y>
+                 <width>41</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="palette">
+                <palette>
+                 <active>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>22</red>
+                     <green>200</green>
+                     <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>22</red>
+                     <green>200</green>
+                     <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>120</red>
+                     <green>120</green>
+                     <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="none_lineEdit">
+               <property name="geometry">
+                <rect>
+                 <x>220</x>
+                 <y>20</y>
+                 <width>41</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="palette">
+                <palette>
+                 <active>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>120</red>
+                     <green>120</green>
+                     <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>120</red>
+                     <green>120</green>
+                     <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="editor_weekday_label_2">
+               <property name="geometry">
+                <rect>
+                 <x>180</x>
+                 <y>20</y>
+                 <width>41</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>None :</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTreeWidget" name="treeWidget">
+              <property name="verticalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="indentation">
+               <number>30</number>
+              </property>
+              <property name="rootIsDecorated">
+               <bool>true</bool>
+              </property>
+              <property name="animated">
+               <bool>false</bool>
+              </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Select Date:</string>
+               </property>
+              </column>
+              <item>
+               <property name="text">
+                <string>October 2020</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Thu 01/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 02/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 03/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 04/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 05/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 06/10/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 07/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 08/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 09/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 10/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 11/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 12/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 13/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 14/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 15/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 16/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 17/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 18/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 19/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 20/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 21/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 22/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 23/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 24/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 25/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 26/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 27/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 28/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 29/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 30/10/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 31/10/20</string>
+                </property>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>November 2020</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Sun 01/11/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 02/11/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 03/11/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 04/11/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 05/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 06/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 07/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 08/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 09/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 10/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 11/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 12/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 13/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 14/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 15/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 16/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 17/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 18/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 19/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 20/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 21/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 22/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 23/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 24/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 25/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 26/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 27/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 28/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 29/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 30/11/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>December 2020</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Tue 01/12/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 02/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 03/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 04/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 05/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 06/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 07/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 08/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 09/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 10/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 11/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 12/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 13/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 14/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 15/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 16/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 17/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 18/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 19/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 20/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 21/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 22/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 23/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 24/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri  25/12/20</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 26/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 27/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 28/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 29/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 30/12/20</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 31/12/20</string>
+                </property>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>January 2021</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Fri 01/01/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 02/01/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 03/01/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 04/01/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 05/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 06/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 07/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 08/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 09/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 10/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 11/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 12/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 13/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 14/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 15/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 16/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 17/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 18/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 19/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 20/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 21/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 22/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 23/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 24/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 25/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 26/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 27/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 28/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 29/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 30/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 31/01/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>February 2021</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Fri 01/02/21</string>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>true</strikeout>
+                 </font>
+                </property>
+               </item>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="cleaning_groupBox_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>ML Selection:</string>
+              </property>
+              <widget class="QPushButton" name="editor_mlupdate_pushButton">
+               <property name="geometry">
+                <rect>
+                 <x>210</x>
+                 <y>30</y>
+                 <width>101</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Update Selection</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="ml_lineEdit">
+               <property name="geometry">
+                <rect>
+                 <x>60</x>
+                 <y>30</y>
+                 <width>81</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="palette">
+                <palette>
+                 <active>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="WindowText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>120</red>
+                     <green>120</green>
+                     <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Text">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>120</red>
+                     <green>120</green>
+                     <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="ToolTipText">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="editor_weekday_label_3">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>30</y>
+                 <width>41</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Days :</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>95</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>95</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Interpolation:</string>
+              </property>
+              <widget class="QPushButton" name="editor_testinterp_pushButton">
+               <property name="geometry">
+                <rect>
+                 <x>210</x>
+                 <y>30</y>
+                 <width>101</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Test Interp.</string>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="editor_spline_spinBox">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>30</y>
+                 <width>51</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>5</number>
+               </property>
+              </widget>
+              <widget class="QComboBox" name="editor_comboBox">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>131</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="insertPolicy">
+                <enum>QComboBox::NoInsert</enum>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Linear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Spline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quadratic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Krogh</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Piecewise-Poly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pchip</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Akima</string>
+                </property>
+               </item>
+              </widget>
+              <widget class="QPushButton" name="editor_singleinterp_pushButton">
+               <property name="geometry">
+                <rect>
+                 <x>210</x>
+                 <y>60</y>
+                 <width>101</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Single Interp.</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="editor_interpolate_pushButton">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>60</y>
+                 <width>131</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Interpolate</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Set Constant:</string>
+              </property>
+              <widget class="QPushButton" name="editor_constant_pushButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="geometry">
+                <rect>
+                 <x>210</x>
+                 <y>30</y>
+                 <width>101</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Set Constant</string>
+               </property>
+              </widget>
+              <widget class="QTimeEdit" name="editor_start_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>22</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QTimeEdit" name="editor_end_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>80</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="dateTime">
+                <datetime>
+                 <hour>23</hour>
+                 <minute>59</minute>
+                 <second>59</second>
+                 <year>2000</year>
+                 <month>1</month>
+                 <day>1</day>
+                </datetime>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="editor_constant_spinBox">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>30</y>
+                 <width>51</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>124</number>
+               </property>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="MplWidget" name="MplWidget1" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6"/>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>470</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>470</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOn</enum>
+            </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QAbstractScrollArea::AdjustIgnored</enum>
+            </property>
+            <property name="showGrid">
+             <bool>true</bool>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::SolidLine</enum>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="rowCount">
+             <number>60</number>
+            </property>
+            <property name="columnCount">
+             <number>24</number>
+            </property>
+            <attribute name="horizontalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>50</number>
+            </attribute>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+            <column/>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1291</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAnalysis">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionVisual_Properties"/>
+    <addaction name="actionHelp"/>
+   </widget>
+   <widget class="QMenu" name="menuStatistics">
+    <property name="title">
+     <string>Display</string>
+    </property>
+    <addaction name="actionAnalysis_0"/>
+    <addaction name="actionDatabase_Editor_0"/>
+    <addaction name="actionStatistics_0"/>
+    <addaction name="actionMachine_Learning_0"/>
+   </widget>
+   <addaction name="menuStatistics"/>
+   <addaction name="menuAnalysis"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAnalysis">
+   <property name="text">
+    <string>Analysis</string>
+   </property>
+  </action>
+  <action name="actionStatistics">
+   <property name="text">
+    <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionMachine_Learning">
+   <property name="text">
+    <string>Machine Learning</string>
+   </property>
+  </action>
+  <action name="actionDatabase_Editor">
+   <property name="text">
+    <string>Database Editor</string>
+   </property>
+  </action>
+  <action name="actionVisual_Properties">
+   <property name="text">
+    <string>Visual Properties</string>
+   </property>
+  </action>
+  <action name="actionAnalysis_0">
+   <property name="text">
+    <string>Viewer</string>
+   </property>
+  </action>
+  <action name="actionStatistics_0">
+   <property name="text">
+    <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionMachine_Learning_0">
+   <property name="text">
+    <string>Prediction</string>
+   </property>
+  </action>
+  <action name="actionDatabase_Editor_0">
+   <property name="text">
+    <string>Editor</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MplWidget</class>
+   <extends>QWidget</extends>
+   <header>mplwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>rawdata_checkBox</tabstop>
+  <tabstop>meandata_checkBox</tabstop>
+  <tabstop>gridlines_checkBox</tabstop>
+  <tabstop>legend_checkBox</tabstop>
+  <tabstop>analysis_checkBox</tabstop>
+  <tabstop>time_checkBox</tabstop>
+  <tabstop>specifictime_timeEdit</tabstop>
+  <tabstop>people_checkBox</tabstop>
+  <tabstop>people_spinBox</tabstop>
+  <tabstop>t1_specificday_dateEdit</tabstop>
+  <tabstop>t1_yesterday_pushButton</tabstop>
+  <tabstop>t1_today_pushButton</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>t1_save_pushButton</tabstop>
+  <tabstop>t1_update_pushButton</tabstop>
+  <tabstop>t2_monday_checkBox</tabstop>
+  <tabstop>t2_tuesday_checkBox</tabstop>
+  <tabstop>t2_wednesday_checkBox</tabstop>
+  <tabstop>t2_thursday_checkBox</tabstop>
+  <tabstop>t2_friday_checkBox</tabstop>
+  <tabstop>t2_saturday_checkBox</tabstop>
+  <tabstop>t2_sunday_checkBox</tabstop>
+  <tabstop>t2_start_dateEdit</tabstop>
+  <tabstop>t2_end_dateEdit</tabstop>
+  <tabstop>t2_pastweek_pushButton</tabstop>
+  <tabstop>t2_pastmonth_pushButton</tabstop>
+  <tabstop>t2_oneweek_pushButton</tabstop>
+  <tabstop>t2_onemonth_pushButton</tabstop>
+  <tabstop>t2_update_pushButton</tabstop>
+  <tabstop>start_timeEdit</tabstop>
+  <tabstop>end_timeEdit</tabstop>
+  <tabstop>day_pushButton</tabstop>
+  <tabstop>morning_pushButton</tabstop>
+  <tabstop>evening_pushButton</tabstop>
+  <tabstop>time_horizontalSlider</tabstop>
+  <tabstop>people_horizontalSlider</tabstop>
+  <tabstop>start_horizontalSlider</tabstop>
+  <tabstop>end_horizontalSlider</tabstop>
+  <tabstop>t3_update_pushButton</tabstop>
+  <tabstop>t3_clearselection_pushButton</tabstop>
+  <tabstop>t3_calendarWidget</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
