@@ -1,12 +1,13 @@
 # PureGym_Project
 
-> **Abstract:** The PureGym project contains tools for acquisition, visualisation and analysis of gym attendance data.
+> **Abstract:** The PureGym project contains tools for acquisition, visualisation, editing and analysis of gym attendance data.
 
 ## Current Version: PureGymAnalysis[v1.01]
 ### _SETUP_
 1. **PureGymGUI.py** - Main script run to start application
 2. **PureGymGUI.ui** - _User Interface_ file containing code to display GUI
-3. **PG2020.db** - Database containing time series collected using webscraper script
+3. **PG2020.db** - Database containing raw time series collected using webscraper script
+4. **PG2020.db** - Database containing cleaned copy of the time series data
 4. **mplwidget.py** - Used by the main script to display the graph
 5. **PureGymFunctions.py** - Auxilary functions imported into the main script
 
@@ -18,7 +19,12 @@ Some modules may need installing:
 ---
 
 ### _BUG FIXES_
-#### NEW :: [v1.01]
+#### NEW :: [v2.00]
+- 'Update Analysis' now only uses days with either a raw or smooth line showing to caclulate statistics instead of all days loaded.
+- Fixed ability to change the dateEdit when saving notes so now it is impossible to save notes accidentally to wrong day.
+- Can now save notes with apostrophes which caused error.
+
+#### [v1.01]
 - Fixed ability to plot multiple analysis window lines by removing need to update plot manually.
 - Window screen size is now dynamic to accomodate different screen sizes:
   - Added a scroll bar to left hand menu.
@@ -29,8 +35,23 @@ Some modules may need installing:
 ---
 
 ### _UPDATES_
-#### NEW :: [v1.01]
-
+#### NEW :: [v2.00]
+- Smoothing window size slider and soinbix
+- New menu options
+	- Help: Help window shows features list.
+	- VisualProperties: Window allows visual customisation.
+	- Viewer: Visualise data for a selection of days.
+ - DataEditor: Edit data base values, interpolate, select days for ML
+	- Statistics: WORK IN PROGRESS
+	- ML: WORK IN PROGRESS
+ 
+ - DataEditor
+  - Ability to display a selected day's data in graph and table.
+  - Options to toggle gridlines, markers and table visibility.
+  - Change day selection for ML.
+  - Interpolation options.
+  
+#### [v1.01]
 Annotations:  
 - Number line: plot horizontal line for a constant number of people.
 - Time annotation toggle: 
@@ -70,7 +91,8 @@ Weekday toggle:
 ---
 
 ### _FEATURES_
-#### DATA TYPES:
+### VIEWER
+##### DATA TYPES:
 
  * Raw Data - display the raw data
  * Smoothed Data  - display the data averaged over a 15minute window
@@ -78,7 +100,7 @@ Weekday toggle:
 
 
 
-#### OPTIONS:
+##### OPTIONS:
 
  * Gridlines - turn on/off gridlines
  * Legend - turn on/off legend
@@ -86,14 +108,14 @@ Weekday toggle:
 
 
 
-#### ANNOTATIONS:
+##### ANNOTATIONS:
 
  * Time - display a vertical line at a specified time on the x-axis
  * People - display a horizontal line at a constant number of people on the y-axis
 
 
 
-#### SPECIFIC DAY:
+##### SPECIFIC DAY:
 
 Select a single day to display:
  * Yesterday - set date to yesterday
@@ -108,7 +130,7 @@ If the notes are altered, the new notes can be saved.
 
 
 
-#### SELECT DAYS:
+##### SELECT DAYS:
 
 Select a range of days to display:
 Days can be filtered using the weekday checkboxes.
@@ -128,12 +150,12 @@ Days can be filtered using the weekday checkboxes.
 
 
 
-#### CALENDAR:
+##### CALENDAR:
 Work in progress
 
 
 
-#### ANALYSIS:
+##### ANALYSIS:
 
 The analysis window specifices the range of times between which some basic quantities are calclulated.
 The start time cannot be after the end time.
@@ -148,8 +170,27 @@ The start time cannot be after the end time.
  
  * Update Analysis - updates the calculated quantities if the analysis window has been changed.
  
- #### GRAPH:
+ ##### GRAPH:
  
  Plotted lines can be toggled on and off by clicking on their corresponding lines in the legend.
  
 ---
+
+### EDITOR
+##### ML SELECTION:
+ * Update Selection: Save selection changes
+ 
+##### INTERPOLATION:
+ * Test Interp.: Produce plot to test all interpolations.
+ * Single Interp.: Inteprolate all single missing data points.
+ * Interpolate: Interpolate data with choice selected.
+ 
+##### SET CONSTANT:
+ * Set Constant: Set values between start and end time to value selected.
+---
+
+### STATISTICS
+
+---
+
+### ML
