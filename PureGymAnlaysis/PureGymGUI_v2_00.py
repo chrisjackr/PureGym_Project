@@ -139,7 +139,7 @@ class MatplotlibWidget(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-        loadUi("PureGymGUI8.ui", self)                                                                                   # Load GUI file.
+        loadUi("PureGymGUI.ui", self)                                                                                   # Load GUI file.
         QMainWindow.showMaximized(self)                                                                                  # Fit window to full screen.
         self.setWindowTitle("PureGym Analytics GUI [v2.00]")                                                             # Set window title.
         self.addToolBar(NavigationToolbar(self.MplWidget.canvas,self))                                                  # Add toolbars to window.
