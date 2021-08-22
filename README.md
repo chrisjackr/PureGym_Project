@@ -2,6 +2,8 @@
 
 > **Abstract:** The PureGym project contains tools for acquisition, visualisation, editing and analysis of gym attendance data.
 
+> **Update:** Unfortunately my latest large update was lost when my SSD failed without being pushed to GitHub along with a few months worth of data collection. Hopefully I have learned that lesson the hard way!
+> 
 ## Current Version: PureGymAnalysis[v1.01]
 ### _SETUP_
 1. **PureGymGUI.py** - Main script run to start application
