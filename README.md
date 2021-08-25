@@ -13,10 +13,7 @@
 4. **mplwidget.py** - Used by the main script to display the graph
 5. **PureGymFunctions.py** - Auxilary functions imported into the main script
 
-To run, save all files in the same folder in your prefered directory and run PureGymGUI.py\
-Some modules may need installing:
- - pyqt5
- - matplotlib
+Install dependencies from requirements.txt
 
 ---
 
