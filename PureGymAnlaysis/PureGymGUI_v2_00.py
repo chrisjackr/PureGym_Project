@@ -10,12 +10,14 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+#SETUP_IMPORT
+from setup import TAB1, TAB2_START, TAB2_END, EDITOR_DATE
+
 #RANDOM_IMPORT
 import sys
 import numpy as np
 from numpy import linspace
 import random
-import math
 from math import cos,sin,pi
 import time
 import datetime
@@ -29,9 +31,7 @@ from matplotlib.backend_tools import ToolToggleBase
 from matplotlib.ticker import (AutoMinorLocator, AutoLocator, LinearLocator, MaxNLocator, FixedLocator,FormatStrFormatter,AutoMinorLocator)
 from matplotlib.widgets import Cursor, SpanSelector, MultiCursor
 
-
 #DATABASE_IMPORT
-#from openpyxl import Workbook, load_workbook
 import sqlite3
 
 #MY_MODULES_AND_FUNCTIONS
@@ -202,9 +202,11 @@ class MatplotlibWidget(QMainWindow):
 
     #-----------------------------------------------------------TAB1
      # SETUP
-        self.t1_specificday_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))                                 # Sets date_edit to today's date for initial setup.
+        self.t1_specificday_dateEdit.setDateTime(QDateTime(TAB1))                                
+        #self.t1_specificday_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))                                # sets date_edit to today's date for initial setup.
 
         input = self.t1_specificday_dateEdit.dateTime().toPyDateTime().date()                                            # Sets label to today's weekday for initial setup.
+        print(input)
         weekday = input.strftime('%a')                                                                                   #  "
         self.t1_specificweekday_label.setText(weekday)                                                                   #  "
 
@@ -238,12 +240,12 @@ class MatplotlibWidget(QMainWindow):
     #-----------------------------------------------------------TAB2
      # SETUP
         # Set start and end dates and weekday labels to today.
-        self.t2_start_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))
+        self.t2_start_dateEdit.setDateTime(QDateTime(TAB2_START))
         input = self.t2_start_dateEdit.dateTime().toPyDateTime().date()
         weekday = input.strftime('%a')
         self.t2_selectweekdaystart_label.setText(weekday)
 
-        self.t2_end_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))
+        self.t2_end_dateEdit.setDateTime(QDateTime(TAB2_END))
         input = self.t2_end_dateEdit.dateTime().toPyDateTime().date()
         weekday = input.strftime('%a')
         self.t2_selectweekdayend_label.setText(weekday)
@@ -326,7 +328,7 @@ class MatplotlibWidget(QMainWindow):
 #=========================================================================================================================================================================================================
         # #TREE_WIDGET
         self.treeWidgetDict = {'10-20':0,'11-20':1,'12-20':2,'01-21':3,'02-21':4,'03-21':5,'04-21':6,'05-21':7,'06-21':8,'07-21':9,'08-21':10,'09-21':11,'10-21':12,'11-21':13,'12-21':14}
-        d = datetime.datetime.today().date() - datetime.timedelta(days=1)
+        d = EDITOR_DATE
         day = int(d.strftime('%e').lstrip('0'))
         month_year = d.strftime('%m-%y')
         self.treeWidget.setCurrentItem(self.treeWidget.invisibleRootItem().child(self.treeWidgetDict[month_year]).child(day-1))
@@ -2158,7 +2160,7 @@ app = QApplication([])                    #|
 app.setStyle('Fusion')                    #|
 window = MatplotlibWidget()               #|
 window.show()                             #|
-window.today()                            #|
+#window.today()                            #|
 window.update_specific_date()             #|
 app.exec_()                               #|
                                           #|
