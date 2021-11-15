@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1291</width>
-    <height>996</height>
+    <width>1295</width>
+    <height>1005</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,8 +59,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>343</width>
-             <height>919</height>
+             <width>358</width>
+             <height>926</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
@@ -260,7 +260,7 @@
                  <rect>
                   <x>10</x>
                   <y>10</y>
-                  <width>82</width>
+                  <width>95</width>
                   <height>201</height>
                  </rect>
                 </property>
@@ -805,6 +805,15 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </active>
                   <inactive>
                    <colorrole role="WindowText">
@@ -828,6 +837,15 @@
                    <colorrole role="ButtonText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
                       <red>255</red>
                       <green>0</green>
                       <blue>0</blue>
@@ -860,6 +878,15 @@
                       <red>120</red>
                       <green>120</green>
                       <blue>120</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>255</red>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1905,7 +1932,7 @@ for the central point in the smoothed data.</string>
              <x>0</x>
              <y>0</y>
              <width>343</width>
-             <height>919</height>
+             <height>920</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -2177,11 +2204,29 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>22</red>
+                     <green>200</green>
+                     <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                  </active>
                  <inactive>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
+                     <red>22</red>
+                     <green>200</green>
+                     <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
                      <red>22</red>
                      <green>200</green>
                      <blue>34</blue>
@@ -2196,6 +2241,15 @@ for the central point in the smoothed data.</string>
                      <red>120</red>
                      <green>120</green>
                      <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>22</red>
+                     <green>200</green>
+                     <blue>34</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2248,6 +2302,15 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>255</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                  </active>
                  <inactive>
                   <colorrole role="WindowText">
@@ -2277,6 +2340,15 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>255</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                  </inactive>
                  <disabled>
                   <colorrole role="WindowText">
@@ -2301,6 +2373,15 @@ for the central point in the smoothed data.</string>
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>255</red>
                      <green>0</green>
                      <blue>0</blue>
                     </color>
@@ -3317,6 +3398,201 @@ for the central point in the smoothed data.</string>
                 </property>
                </item>
               </item>
+              <item>
+               <property name="text">
+                <string>March 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>April 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>May 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>June 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>July 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>August 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>September 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>October 2021</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>November 2021</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Mon 01/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 02/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 03/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 04/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 05/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 06/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 07/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 08/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 09/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 10/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Thu 11/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fri 12/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sat 13/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sun 14/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mon 15/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tue 16/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wed 17/11/21</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+              </item>
              </widget>
             </item>
             <item>
@@ -3394,6 +3670,15 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                  </active>
                  <inactive>
                   <colorrole role="WindowText">
@@ -3423,6 +3708,15 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                  </inactive>
                  <disabled>
                   <colorrole role="WindowText">
@@ -3446,6 +3740,15 @@ for the central point in the smoothed data.</string>
                   <colorrole role="ToolTipText">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="PlaceholderText">
+                   <brush brushstyle="NoBrush">
+                    <color alpha="128">
                      <red>0</red>
                      <green>0</green>
                      <blue>0</blue>
@@ -3866,7 +4169,7 @@ for the central point in the smoothed data.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1291</width>
+     <width>1295</width>
      <height>21</height>
     </rect>
    </property>
