@@ -1,0 +1,10 @@
+File descriptions...
+
+PureGymGUI.ui - the main interface 
+HelpGUI.ui - the help menu interface
+VisualPropertieesGUI.ui - the visual properties menu interface
+
+mplwidget.py - contains class for graph widget
+PureGymFunctions.py - contains auxilary functions
+PureGymGUI_v2_00 - main file to run GUI
+
