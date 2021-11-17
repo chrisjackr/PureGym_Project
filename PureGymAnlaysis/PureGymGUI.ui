@@ -9,21 +9,127 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1295</width>
-    <height>1005</height>
+    <width>1291</width>
+    <height>996</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+background-color:white;
+}
+
+QScrollArea{
+background:white;
+}
+
+QCheckBox{
+color: rgb(0, 53, 77);
+background:none;
+}
+
+QComboBox{
+color:rgb(0, 53, 77);
+}
+
+QDateEdit{
+color:rgb(0, 53, 77)
+}
+
+QLabel{
+color: rgb(0, 53, 77);
+background:none
+}
+
+QGroupBox{
+color: rgb(0, 53, 77);
+font: 75 &quot;Arial&quot;;
+}
+
+QLabel{
+color: rgb(0, 53, 77);
+}
+
+QMenu::item:selected{
+background-color: rgb(0, 110, 157);
+}
+
+QProgressBar{
+border: 2px solid rgb(0, 53, 77);;
+border-radius: 2px;
+background-color: white
+}
+
+QProgressBar::chunk {
+background-color: rgb(0, 53, 77);
+width: 13px; 
+margin: 0.5px;
+}
+
+QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}
+
+QScrollBar{
+background:rgb(240, 240, 240);
+}
+
+QSlider::handle:horizontal{
+background-color: rgb(0, 53, 77);
+}
+
+QSlider::handle:horizontal:hover{
+background-color: rgb(0, 110, 157);
+}
+
+QSpinBox{
+color:rgb(0, 53, 77);
+}
+
+QTableWidget{
+color:rgb(0, 53, 77);
+}
+
+QTabWidget{
+color: rgb(0, 53, 77)
+}
+
+QTimeEdit{
+color:rgb(0, 53, 77);
+}
+
+QTreeWidget{
+color:rgb(0, 53, 77);
+}
+
+QWidget:LeftscrollArea{
+background-color:white
+}r</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background:white</string>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Analysis">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QScrollArea" name="LeftscrollArea">
@@ -39,11 +145,22 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QScrollBar{
+background:rgb(240, 240, 240);
+}</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
           </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -62,6 +179,9 @@
              <width>358</width>
              <height>926</height>
             </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="5" column="0">
@@ -87,8 +207,11 @@
                 <height>0</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 53, 77)</string>
+              </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tab_1">
                <attribute name="title">
@@ -116,6 +239,16 @@
                   <height>23</height>
                  </rect>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Today</string>
                 </property>
@@ -128,6 +261,16 @@
                   <width>81</width>
                   <height>23</height>
                  </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                 </property>
                 <property name="text">
                  <string>Yesterday</string>
@@ -148,6 +291,16 @@
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Update</string>
                 </property>
@@ -163,6 +316,9 @@
                   <width>21</width>
                   <height>21</height>
                  </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background:none</string>
                 </property>
                 <property name="text">
                  <string>Sun</string>
@@ -232,7 +388,10 @@
                  </rect>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
@@ -381,6 +540,9 @@
                    <height>21</height>
                   </rect>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background:none</string>
+                 </property>
                  <property name="text">
                   <string>Start:</string>
                  </property>
@@ -407,6 +569,9 @@
                    <height>21</height>
                   </rect>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background:none</string>
+                 </property>
                  <property name="text">
                   <string>End:</string>
                  </property>
@@ -423,6 +588,9 @@
                    <height>21</height>
                   </rect>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background:none</string>
+                 </property>
                  <property name="text">
                   <string>Sun</string>
                  </property>
@@ -435,6 +603,9 @@
                    <width>21</width>
                    <height>21</height>
                   </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background:none</string>
                  </property>
                  <property name="text">
                   <string>Sun</string>
@@ -452,6 +623,16 @@
                  <property name="toolTip">
                   <string>Show past 28 full days.</string>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                 </property>
                  <property name="text">
                   <string>Past  Month</string>
                  </property>
@@ -467,6 +648,16 @@
                  </property>
                  <property name="toolTip">
                   <string>Start date plus 28 days.</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                  </property>
                  <property name="text">
                   <string>+ 1 Month</string>
@@ -484,6 +675,16 @@
                  <property name="toolTip">
                   <string>Show past 7 full days.</string>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                 </property>
                  <property name="text">
                   <string>Past Week</string>
                  </property>
@@ -499,6 +700,16 @@
                  </property>
                  <property name="toolTip">
                   <string>Start date plus 7 days.</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                  </property>
                  <property name="text">
                   <string>+ 1 Week</string>
@@ -520,6 +731,16 @@
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Update</string>
                 </property>
@@ -539,6 +760,16 @@
                 <property name="toolTip">
                  <string>Deselect all weekdays.</string>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Deselect All</string>
                 </property>
@@ -554,6 +785,16 @@
                 </property>
                 <property name="toolTip">
                  <string>Select all weekdays.</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                 </property>
                 <property name="text">
                  <string>Select All</string>
@@ -579,7 +820,61 @@
                 <property name="palette">
                  <palette>
                   <active>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
@@ -612,12 +907,75 @@
                       <red>225</red>
                       <green>225</green>
                       <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                   </active>
                   <inactive>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
@@ -653,9 +1011,72 @@
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </inactive>
                   <disabled>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="BrightText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
@@ -688,6 +1109,15 @@
                       <red>225</red>
                       <green>225</green>
                       <blue>225</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -740,6 +1170,16 @@
                   <height>21</height>
                  </rect>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Clear</string>
                 </property>
@@ -762,6 +1202,16 @@
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                </property>
                 <property name="text">
                  <string>Update</string>
                 </property>
@@ -781,36 +1231,36 @@
                    <colorrole role="WindowText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Text">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="ButtonText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="PlaceholderText">
                     <brush brushstyle="NoBrush">
                      <color alpha="128">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -819,36 +1269,36 @@
                    <colorrole role="WindowText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Text">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="ButtonText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="PlaceholderText">
                     <brush brushstyle="NoBrush">
                      <color alpha="128">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -857,36 +1307,36 @@
                    <colorrole role="WindowText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>120</red>
-                      <green>120</green>
-                      <blue>120</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Text">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>120</red>
-                      <green>120</green>
-                      <blue>120</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="ButtonText">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>120</red>
-                      <green>120</green>
-                      <blue>120</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="PlaceholderText">
                     <brush brushstyle="NoBrush">
                      <color alpha="128">
-                      <red>255</red>
-                      <green>0</green>
-                      <blue>0</blue>
+                      <red>0</red>
+                      <green>53</green>
+                      <blue>77</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -900,6 +1350,9 @@
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background:none</string>
+                </property>
                 <property name="text">
                  <string>WORK IN PROGRESS</string>
                 </property>
@@ -910,49 +1363,137 @@
               </widget>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QProgressBar" name="progressBar">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
+            <item row="4" column="0">
+             <widget class="QGroupBox" name="annotations_groupBox">
               <property name="minimumSize">
                <size>
                 <width>320</width>
-                <height>20</height>
+                <height>90</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>320</width>
-                <height>20</height>
+                <height>90</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <italic>false</italic>
-                <bold>true</bold>
-                <strikeout>false</strikeout>
-               </font>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>80</height>
+               </size>
               </property>
-              <property name="value">
-               <number>100</number>
+              <property name="title">
+               <string>Annotations:</string>
               </property>
-              <property name="textVisible">
-               <bool>false</bool>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="invertedAppearance">
-               <bool>false</bool>
-              </property>
-              <property name="textDirection">
-               <enum>QProgressBar::TopToBottom</enum>
-              </property>
-              <property name="format">
-               <string/>
-              </property>
+              <widget class="QCheckBox" name="time_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
+               </property>
+               <property name="text">
+                <string>   Time:</string>
+               </property>
+              </widget>
+              <widget class="QSlider" name="time_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>30</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="maximum">
+                <number>1439</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QTimeEdit" name="specifictime_timeEdit">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>30</y>
+                 <width>61</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>X-value of vertical line.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="people_checkBox">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>60</y>
+                 <width>91</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
+               </property>
+               <property name="text">
+                <string>People:</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QSlider" name="people_horizontalSlider">
+               <property name="geometry">
+                <rect>
+                 <x>150</x>
+                 <y>60</y>
+                 <width>161</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="maximum">
+                <number>124</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="people_spinBox">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>60</y>
+                 <width>61</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="toolTip">
+                <string>Y-value of horizontal line.</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="maximum">
+                <number>124</number>
+               </property>
+              </widget>
              </widget>
             </item>
             <item row="2" column="0">
@@ -974,6 +1515,9 @@
                 <width>0</width>
                 <height>80</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="title">
                <string>Smoothing:</string>
@@ -1056,135 +1600,11 @@ for the central point in the smoothed data.</string>
                  <height>21</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
+               </property>
                <property name="text">
                 <string>Window Size:</string>
-               </property>
-              </widget>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QGroupBox" name="annotations_groupBox">
-              <property name="minimumSize">
-               <size>
-                <width>320</width>
-                <height>90</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>320</width>
-                <height>90</height>
-               </size>
-              </property>
-              <property name="baseSize">
-               <size>
-                <width>0</width>
-                <height>80</height>
-               </size>
-              </property>
-              <property name="title">
-               <string>Annotations:</string>
-              </property>
-              <widget class="QCheckBox" name="time_checkBox">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>30</y>
-                 <width>61</width>
-                 <height>21</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>   Time:</string>
-               </property>
-              </widget>
-              <widget class="QSlider" name="time_horizontalSlider">
-               <property name="geometry">
-                <rect>
-                 <x>150</x>
-                 <y>30</y>
-                 <width>161</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="focusPolicy">
-                <enum>Qt::NoFocus</enum>
-               </property>
-               <property name="maximum">
-                <number>1439</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-              <widget class="QTimeEdit" name="specifictime_timeEdit">
-               <property name="geometry">
-                <rect>
-                 <x>70</x>
-                 <y>30</y>
-                 <width>61</width>
-                 <height>21</height>
-                </rect>
-               </property>
-               <property name="toolTip">
-                <string>X-value of vertical line.</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-              <widget class="QCheckBox" name="people_checkBox">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>60</y>
-                 <width>91</width>
-                 <height>21</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>People:</string>
-               </property>
-               <property name="checked">
-                <bool>false</bool>
-               </property>
-              </widget>
-              <widget class="QSlider" name="people_horizontalSlider">
-               <property name="geometry">
-                <rect>
-                 <x>150</x>
-                 <y>60</y>
-                 <width>161</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="focusPolicy">
-                <enum>Qt::NoFocus</enum>
-               </property>
-               <property name="maximum">
-                <number>124</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-              <widget class="QSpinBox" name="people_spinBox">
-               <property name="geometry">
-                <rect>
-                 <x>70</x>
-                 <y>60</y>
-                 <width>61</width>
-                 <height>22</height>
-                </rect>
-               </property>
-               <property name="toolTip">
-                <string>Y-value of horizontal line.</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-               <property name="maximum">
-                <number>124</number>
                </property>
               </widget>
              </widget>
@@ -1208,12 +1628,18 @@ for the central point in the smoothed data.</string>
                   <height>100</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="title">
                  <string>Data Types:</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_2">
                  <item row="0" column="0">
                   <widget class="QCheckBox" name="rawdata_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Raw Data</string>
                    </property>
@@ -1221,6 +1647,9 @@ for the central point in the smoothed data.</string>
                  </item>
                  <item row="3" column="0">
                   <widget class="QCheckBox" name="meandata_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Mean Data</string>
                    </property>
@@ -1228,6 +1657,9 @@ for the central point in the smoothed data.</string>
                  </item>
                  <item row="2" column="0">
                   <widget class="QCheckBox" name="smootheddata_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Smoothed Data</string>
                    </property>
@@ -1253,12 +1685,18 @@ for the central point in the smoothed data.</string>
                   <height>100</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="title">
                  <string>Options:</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_3">
                  <item>
                   <widget class="QCheckBox" name="gridlines_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Gridlines</string>
                    </property>
@@ -1269,6 +1707,9 @@ for the central point in the smoothed data.</string>
                  </item>
                  <item>
                   <widget class="QCheckBox" name="legend_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Legend</string>
                    </property>
@@ -1279,6 +1720,9 @@ for the central point in the smoothed data.</string>
                  </item>
                  <item>
                   <widget class="QCheckBox" name="analysis_checkBox">
+                   <property name="styleSheet">
+                    <string notr="true">background:none</string>
+                   </property>
                    <property name="text">
                     <string>Analysis Window</string>
                    </property>
@@ -1292,38 +1736,51 @@ for the central point in the smoothed data.</string>
               </item>
              </layout>
             </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_title">
+            <item row="6" column="0">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="minimumSize">
                <size>
-                <width>0</width>
-                <height>40</height>
+                <width>320</width>
+                <height>20</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
-                <height>40</height>
+                <width>320</width>
+                <height>20</height>
                </size>
               </property>
               <property name="font">
                <font>
-                <family>Yu Gothic UI Semibold</family>
-                <pointsize>20</pointsize>
                 <weight>75</weight>
+                <italic>false</italic>
                 <bold>true</bold>
-                <underline>false</underline>
                 <strikeout>false</strikeout>
                </font>
               </property>
-              <property name="frameShape">
-               <enum>QFrame::NoFrame</enum>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
-              <property name="text">
-               <string>PureGym: Data Viewer</string>
+              <property name="value">
+               <number>100</number>
               </property>
-              <property name="scaledContents">
+              <property name="textVisible">
                <bool>false</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+              <property name="textDirection">
+               <enum>QProgressBar::TopToBottom</enum>
+              </property>
+              <property name="format">
+               <string/>
               </property>
              </widget>
             </item>
@@ -1492,6 +1949,16 @@ for the central point in the smoothed data.</string>
                   <property name="toolTip">
                    <string>Start: End:</string>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                  </property>
                   <property name="text">
                    <string>Full Day</string>
                   </property>
@@ -1513,6 +1980,16 @@ for the central point in the smoothed data.</string>
                   </property>
                   <property name="toolTip">
                    <string>Start: End:</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                   </property>
                   <property name="text">
                    <string>Day</string>
@@ -1536,6 +2013,16 @@ for the central point in the smoothed data.</string>
                   <property name="toolTip">
                    <string>Start: End:</string>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+                  </property>
                   <property name="text">
                    <string>Morning</string>
                   </property>
@@ -1557,6 +2044,16 @@ for the central point in the smoothed data.</string>
                   </property>
                   <property name="toolTip">
                    <string>Start: End:</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                   </property>
                   <property name="text">
                    <string>Evening</string>
@@ -1736,6 +2233,16 @@ for the central point in the smoothed data.</string>
                <property name="layoutDirection">
                 <enum>Qt::LeftToRight</enum>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Update Analysis</string>
                </property>
@@ -1880,64 +2387,8 @@ for the central point in the smoothed data.</string>
               </widget>
              </widget>
             </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="MplWidget" name="MplWidget" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="Statistics"/>
-      <widget class="QWidget" name="MachineLearning"/>
-      <widget class="QWidget" name="DatabaseEditor">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QScrollArea" name="scrollArea">
-          <property name="minimumSize">
-           <size>
-            <width>360</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>360</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOn</enum>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_2">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>343</width>
-             <height>920</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_title_2">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_title">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -1959,6 +2410,117 @@ for the central point in the smoothed data.</string>
                 <underline>false</underline>
                 <strikeout>false</strikeout>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 53, 77);</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="text">
+               <string>PureGym: Data Viewer</string>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MplWidget" name="MplWidget" native="true">
+          <property name="styleSheet">
+           <string notr="true">background-color: white</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Statistics"/>
+      <widget class="QWidget" name="MachineLearning"/>
+      <widget class="QWidget" name="DatabaseEditor">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="minimumSize">
+           <size>
+            <width>360</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>360</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QScrollBar{
+background:rgb(240, 240, 240);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>345</width>
+             <height>880</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_title_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Yu Gothic UI Semibold</family>
+                <pointsize>20</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>false</underline>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 53, 77);
+font: 75 &quot;Arial&quot;;</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -2042,6 +2604,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Load</string>
                </property>
@@ -2061,6 +2633,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Save</string>
                </property>
@@ -2073,6 +2655,9 @@ for the central point in the smoothed data.</string>
                  <width>71</width>
                  <height>22</height>
                 </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
                </property>
                <property name="text">
                 <string>Markers</string>
@@ -2090,6 +2675,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Reset</string>
                </property>
@@ -2102,6 +2697,9 @@ for the central point in the smoothed data.</string>
                  <width>71</width>
                  <height>22</height>
                 </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
                </property>
                <property name="text">
                 <string>Gridlines</string>
@@ -2176,6 +2774,9 @@ for the central point in the smoothed data.</string>
                <property name="statusTip">
                 <string notr="true"/>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background:none</string>
+               </property>
                <property name="text">
                 <string> Table</string>
                </property>
@@ -2195,12 +2796,39 @@ for the central point in the smoothed data.</string>
                <property name="palette">
                 <palette>
                  <active>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>22</red>
                      <green>200</green>
                      <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2215,12 +2843,39 @@ for the central point in the smoothed data.</string>
                   </colorrole>
                  </active>
                  <inactive>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>22</red>
                      <green>200</green>
                      <blue>34</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2235,12 +2890,39 @@ for the central point in the smoothed data.</string>
                   </colorrole>
                  </inactive>
                  <disabled>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>120</red>
                      <green>120</green>
                      <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2284,12 +2966,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>255</red>
                      <green>0</green>
                      <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2322,12 +3031,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>255</red>
                      <green>0</green>
                      <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2360,12 +3096,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>120</red>
                      <green>120</green>
                      <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -2400,7 +3163,7 @@ for the central point in the smoothed data.</string>
               <widget class="QLabel" name="editor_weekday_label_2">
                <property name="geometry">
                 <rect>
-                 <x>180</x>
+                 <x>170</x>
                  <y>20</y>
                  <width>41</width>
                  <height>22</height>
@@ -3627,6 +4390,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Update Selection</string>
                </property>
@@ -3634,7 +4407,7 @@ for the central point in the smoothed data.</string>
               <widget class="QLineEdit" name="ml_lineEdit">
                <property name="geometry">
                 <rect>
-                 <x>60</x>
+                 <x>70</x>
                  <y>30</y>
                  <width>81</width>
                  <height>22</height>
@@ -3652,12 +4425,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>0</red>
                      <green>0</green>
                      <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -3690,12 +4490,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>0</red>
                      <green>0</green>
                      <blue>0</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -3728,12 +4555,39 @@ for the central point in the smoothed data.</string>
                     </color>
                    </brush>
                   </colorrole>
+                  <colorrole role="Button">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
                   <colorrole role="Text">
                    <brush brushstyle="SolidPattern">
                     <color alpha="255">
                      <red>120</red>
                      <green>120</green>
                      <blue>120</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
                     </color>
                    </brush>
                   </colorrole>
@@ -3812,6 +4666,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Test Interp.</string>
                </property>
@@ -3844,11 +4708,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:white;
+border: 2px black;
+</string>
+               </property>
                <property name="insertPolicy">
                 <enum>QComboBox::NoInsert</enum>
                </property>
                <property name="frame">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
                <item>
                 <property name="text">
@@ -3900,6 +4769,16 @@ for the central point in the smoothed data.</string>
                  <height>23</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
+               </property>
                <property name="text">
                 <string>Single Interp.</string>
                </property>
@@ -3912,6 +4791,16 @@ for the central point in the smoothed data.</string>
                  <width>131</width>
                  <height>23</height>
                 </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                </property>
                <property name="text">
                 <string>Interpolate</string>
@@ -3947,6 +4836,16 @@ for the central point in the smoothed data.</string>
                  <width>101</width>
                  <height>23</height>
                 </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgb(0, 53, 77);
+color: white;
+}
+
+QPushButton:hover{
+background-color: rgb(0, 110, 157);
+}</string>
                </property>
                <property name="text">
                 <string>Set Constant</string>
@@ -4042,6 +4941,9 @@ for the central point in the smoothed data.</string>
               <underline>false</underline>
               <strikeout>false</strikeout>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:rgb(0, 53, 77)</string>
             </property>
             <property name="verticalScrollBarPolicy">
              <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -4169,9 +5071,13 @@ for the central point in the smoothed data.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1295</width>
-     <height>21</height>
+     <width>1291</width>
+     <height>26</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 53, 77);
+color: white</string>
    </property>
    <widget class="QMenu" name="menuAnalysis">
     <property name="title">
@@ -4253,15 +5159,19 @@ for the central point in the smoothed data.</string>
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>LeftscrollArea</tabstop>
   <tabstop>rawdata_checkBox</tabstop>
+  <tabstop>smootheddata_checkBox</tabstop>
   <tabstop>meandata_checkBox</tabstop>
   <tabstop>gridlines_checkBox</tabstop>
   <tabstop>legend_checkBox</tabstop>
   <tabstop>analysis_checkBox</tabstop>
+  <tabstop>smooth_spinBox</tabstop>
   <tabstop>time_checkBox</tabstop>
   <tabstop>specifictime_timeEdit</tabstop>
   <tabstop>people_checkBox</tabstop>
   <tabstop>people_spinBox</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>t1_specificday_dateEdit</tabstop>
   <tabstop>t1_yesterday_pushButton</tabstop>
   <tabstop>t1_today_pushButton</tabstop>
@@ -4278,22 +5188,53 @@ for the central point in the smoothed data.</string>
   <tabstop>t2_start_dateEdit</tabstop>
   <tabstop>t2_end_dateEdit</tabstop>
   <tabstop>t2_pastweek_pushButton</tabstop>
-  <tabstop>t2_pastmonth_pushButton</tabstop>
   <tabstop>t2_oneweek_pushButton</tabstop>
+  <tabstop>t2_pastmonth_pushButton</tabstop>
   <tabstop>t2_onemonth_pushButton</tabstop>
+  <tabstop>t2_selectall_pushButton</tabstop>
+  <tabstop>t2_deselectall_pushButton</tabstop>
   <tabstop>t2_update_pushButton</tabstop>
+  <tabstop>t3_calendarWidget</tabstop>
+  <tabstop>t3_clearselection_pushButton</tabstop>
+  <tabstop>t3_update_pushButton</tabstop>
   <tabstop>start_timeEdit</tabstop>
   <tabstop>end_timeEdit</tabstop>
+  <tabstop>fullday_pushButton</tabstop>
   <tabstop>day_pushButton</tabstop>
   <tabstop>morning_pushButton</tabstop>
   <tabstop>evening_pushButton</tabstop>
-  <tabstop>time_horizontalSlider</tabstop>
-  <tabstop>people_horizontalSlider</tabstop>
-  <tabstop>start_horizontalSlider</tabstop>
-  <tabstop>end_horizontalSlider</tabstop>
-  <tabstop>t3_update_pushButton</tabstop>
-  <tabstop>t3_clearselection_pushButton</tabstop>
-  <tabstop>t3_calendarWidget</tabstop>
+  <tabstop>max_checkBox</tabstop>
+  <tabstop>min_checkBox</tabstop>
+  <tabstop>sd_checkBox</tabstop>
+  <tabstop>md_checkBox</tabstop>
+  <tabstop>mean_checkBox</tabstop>
+  <tabstop>median_checkBox</tabstop>
+  <tabstop>mode_checkBox</tabstop>
+  <tabstop>range_checkBox</tabstop>
+  <tabstop>update_analysis_pushButton</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>editor_dateEdit</tabstop>
+  <tabstop>editor_load_pushButton</tabstop>
+  <tabstop>editor_save_pushButton</tabstop>
+  <tabstop>editor_marker_checkBox</tabstop>
+  <tabstop>editor_reset_pushButton</tabstop>
+  <tabstop>editor_gridlines_checkBox</tabstop>
+  <tabstop>showtable_checkBox</tabstop>
+  <tabstop>none_lineEdit_2</tabstop>
+  <tabstop>none_lineEdit</tabstop>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>editor_mlupdate_pushButton</tabstop>
+  <tabstop>ml_lineEdit</tabstop>
+  <tabstop>editor_testinterp_pushButton</tabstop>
+  <tabstop>editor_spline_spinBox</tabstop>
+  <tabstop>editor_comboBox</tabstop>
+  <tabstop>editor_singleinterp_pushButton</tabstop>
+  <tabstop>editor_interpolate_pushButton</tabstop>
+  <tabstop>editor_constant_pushButton</tabstop>
+  <tabstop>editor_start_timeEdit</tabstop>
+  <tabstop>editor_end_timeEdit</tabstop>
+  <tabstop>editor_constant_spinBox</tabstop>
+  <tabstop>tableWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>
