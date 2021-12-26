@@ -1,6 +1,9 @@
 puregym_env/
-PureGymAnlaysis/__pycache__/
+__pycache__/
+logs/
+
 subtitles.srt
 subtitles.txt
 PureGym GUI Demo.mp4
-logs/
+
+PureGymAnlaysis/__pycache__/
