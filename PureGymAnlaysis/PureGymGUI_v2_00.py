@@ -11,14 +11,17 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 #SETUP_IMPORT
-from setup import TAB1, TAB2_START, TAB2_END, EDITOR_DATE
+from setup import TAB1, TAB2_START, TAB2_END, EDITOR_DATE, YEAR, TREE_DICT
+#import setup
 
 #RANDOM_IMPORT
+import calendar
 import sys
 import numpy as np
 from numpy import linspace
 import random
 from math import cos,sin,pi
+from statistics import mode, median, stdev, variance
 import time
 import datetime
 import pandas as pd
@@ -42,27 +45,21 @@ from PureGymFunctions import num2time, time2num
 
 #===========================================AUXILARY_FUNCTIONS=========================================================#
 # ----------------------------------------------------------TIME_SERIES
-time_vec = []                                                                                                            # Creates a 1440 length vector with datetime entries between 00:00 and 23:59. Note that the Year Day and Month are set to 01/01/2020.
-for i in range(1440):                                                                                                    # This needs to be specified when plotting graphs, even though only HH:MM is shown on the x-axis
-    tdelta = datetime.timedelta(minutes=i)
-    time_vec.append(datetime.datetime(2020,1,1,0,0,0,0)+tdelta)
+# Creates a 1440 length vector with datetime entries between 00:00 and 23:59. Note that the Year Day and Month are set to 01/01/2020.
+# This needs to be specified when plotting graphs, even though only HH:MM is shown on the x-axis
+time_vec = [datetime.datetime(2020,1,1,0,0,0,0)+datetime.timedelta(minutes=i) for i in range(1440)]
 
 # ----------------------------------------------------------X_AXIS_LABELS
-x_label = []                                                                                                             # x_list contains a list with the 24 hours in datetime format.
-x_list = []                                                                                                              # x_label contains a list with the 24 hour labels: [00:00, 01:00, 02:00, ... , 23:00]
-for i in range(24):
-    x_list.append(datetime.datetime(2020, 1, 1, i, 0, 0, 0))
-    M = datetime.datetime(2020, 1, 1, i, 0, 0, 0).strftime('%M')
-    H = datetime.datetime(2020, 1, 1, i, 0, 0, 0).strftime('%H')
-    x_label.append(str(H+':'+M))
-
-x_list.append(datetime.datetime(2020,1,2,0,0,0,0))                                                                       # Adds midnight to list.
-x_label.append('24:00')                                                                                                  # Adds 24:00 to list.
+# xlabel = ['00:00','01:00',...,'23:00','24:00']
+x_list = [datetime.datetime(2020, 1, 1, i, 0, 0, 0) for i in range(24)]
+x_label = [str(datetime.datetime(2020, 1, 1, i, 0, 0, 0).strftime('%H')+':'+datetime.datetime(2020, 1, 1, i, 0, 0, 0).strftime('%M')) for i in range(24)]
+x_list.append(datetime.datetime(2020,1,2,0,0,0,0))
+x_label.append('24:00')
 
 
 # ----------------------------------------------------------TEST_FUNCTIONS
-global alpha1
-alpha1 = 0.2
+global ALPHA1
+ALPHA1 = 0.2
 
 # ----------------------------------------------------------LINE_PICKER
 
@@ -132,16 +129,15 @@ class VisualProperties(QWidget):
         self.vp_test_pushButton.clicked.connect(window.test)
 
     def alpha_slider(self):
-        print('dg')
+        print('Alpha test')
         #self.vp_opacity_SpinBox.setValue(self.vp_opacity_horizontalSlider.value())
 
 class MatplotlibWidget(QMainWindow):
-
     def __init__(self):
         QMainWindow.__init__(self)
         loadUi("PureGymGUI.ui", self)                                                                                   # Load GUI file.
         QMainWindow.showMaximized(self)                                                                                  # Fit window to full screen.
-        self.setWindowTitle("PureGym Analytics GUI [v2.00]")                                                             # Set window title.
+        self.setWindowTitle("PureGym Analytics GUI")                                                                    # Set window title.
         self.addToolBar(NavigationToolbar(self.MplWidget.canvas,self))                                                  # Add toolbars to window.
         self.addToolBar(NavigationToolbar(self.MplWidget1.canvas, self))                                                 #  "                   "
         #self.showMaximized()
@@ -151,7 +147,6 @@ class MatplotlibWidget(QMainWindow):
         # self.MplWidget.setGeometry(QtCore.QRect(370, 10, 1530, 950))  #(xpos,ypos,xwidth,yheight)
         self.MplWidget.canvas.mpl_connect('pick_event', on_pick)
         self.MplWidget1.canvas.mpl_connect('pick_event', editor_on_pick)
-        self.attr = 'Hi'
 
     #CURSOR
         self.cursor = Cursor(self.MplWidget.canvas.axes, alpha=0.2, color = 'grey', vertOn=True, horizOn=True, linewidth = 1, useblit=True)                             # Add cursor to first plot.
@@ -203,10 +198,8 @@ class MatplotlibWidget(QMainWindow):
     #-----------------------------------------------------------TAB1
      # SETUP
         self.t1_specificday_dateEdit.setDateTime(QDateTime(TAB1))                                
-        #self.t1_specificday_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))                                # sets date_edit to today's date for initial setup.
 
         input = self.t1_specificday_dateEdit.dateTime().toPyDateTime().date()                                            # Sets label to today's weekday for initial setup.
-        print(input)
         weekday = input.strftime('%a')                                                                                   #  "
         self.t1_specificweekday_label.setText(weekday)                                                                   #  "
 
@@ -285,7 +278,7 @@ class MatplotlibWidget(QMainWindow):
 
 
     #-----------------------------------------------------------TAB3
-        #No functions yet
+    
 
     #-----------------------------------------------------------ANALYSIS_GROUPBOX
      # ANALYSIS
@@ -319,28 +312,45 @@ class MatplotlibWidget(QMainWindow):
      # UPDATE ANALYSIS
         self.update_analysis_pushButton.clicked.connect(self.update_analysis)
 
-    #Timer for continuous plotting cusor_lables.......
-        # self.timer = QtCore.QTimer()
-        # self.timer.setInterval(1)
-        # self.timer.timeout.connect(self.cusor_lables)
-        # self.timer.start
-
 #=========================================================================================================================================================================================================
-        # #TREE_WIDGET
-        self.treeWidgetDict = {'10-20':0,'11-20':1,'12-20':2,'01-21':3,'02-21':4,'03-21':5,'04-21':6,'05-21':7,'06-21':8,'07-21':9,'08-21':10,'09-21':11,'10-21':12,'11-21':13,'12-21':14}
-        d = EDITOR_DATE
-        day = int(d.strftime('%e').lstrip('0'))
-        month_year = d.strftime('%m-%y')
-        self.treeWidget.setCurrentItem(self.treeWidget.invisibleRootItem().child(self.treeWidgetDict[month_year]).child(day-1))
+        #TREE_WIDGET
+        EDITOR_DAY = int(EDITOR_DATE.strftime('%e').lstrip('0'))
+        EDITOR_MONTH_YEAR = EDITOR_DATE.strftime('%m-%y')
+
+        MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
+
+        for month in range(12):
+            parent = QTreeWidgetItem(self.treeWidget)
+            parent.setText(0,MONTHS[month]+' '+str(YEAR))
+
+            CALENDAR = []
+            sdate = datetime.date(YEAR,month+1,1)
+            if month+2 < 13:
+                edate = datetime.date(YEAR,month+2,1)
+            else:
+                edate = datetime.date(YEAR+1,1,1)
+            delta = edate-sdate
+
+            for i in range(delta.days):
+                date = sdate + datetime.timedelta(days=i)
+                CALENDAR.append(date.strftime('%d/%m/%y'))
+                
+            for day in CALENDAR:
+                child = QTreeWidgetItem(parent)
+                child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
+                child.setText(0,day)
+                child.setCheckState(0, Qt.Unchecked)
+
+        if EDITOR_DATE.strftime('%Y') == str(YEAR):
+            self.treeWidget.setCurrentItem(self.treeWidget.invisibleRootItem().child(int(TREE_DICT[EDITOR_MONTH_YEAR])).child(EDITOR_DAY-1))
+        else:
+            self.treeWidget.setCurrentItem(self.treeWidget.invisibleRootItem().child(0).child(0))
 
         #TABLE_WIDGET
         self.itemchangeconnected = True
-        self.table_changed_col = []
-        self.table_changed_row = []
+        self.table_changed_col, self.table_changed_row = [], []
 
-        vert_table_labels = []
-        for i in range(60):
-            vert_table_labels.append(str(i))
+        vert_table_labels = [str(i) for i in range(60)]
 
         header = self.tableWidget.horizontalHeader()
         self.tableWidget.setHorizontalHeaderLabels(
@@ -351,7 +361,7 @@ class MatplotlibWidget(QMainWindow):
             header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
 
         #OTHER
-        self.editor_dateEdit.setDateTime(QDateTime(QDateTime.currentDateTime()))  # Sets date_edit to today's date for initial setup.
+        self.editor_dateEdit.setDateTime(QDateTime(EDITOR_DATE))  # Sets date_edit to setup file date
         self.editor_date_label_change()
         self.editor_progressBar.setValue(1)
 
@@ -362,7 +372,6 @@ class MatplotlibWidget(QMainWindow):
         self.showtable_checkBox.stateChanged.connect(self.editor_showtable)
         self.editor_singleinterp_pushButton.clicked.connect(self.short_interp)
 
-        self.treeWidget.itemSelectionChanged.connect(self.tree_change)
         self.tableWidget.itemChanged.connect(self.table_change)
 
         self.editor_load_pushButton.clicked.connect(self.load_popup)
@@ -401,10 +410,9 @@ class MatplotlibWidget(QMainWindow):
         self.MplWidget1.canvas.axes.grid(alpha=0.25)
         self.editor_gridlines()
         self.editor_load()
-#=========================================================================================================================================================================================================
-#======================================================================================================================#
 
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        #----------------------------------------------------------ML TICKS
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
         curs.execute("SELECT Day, ML FROM puregym_table")
@@ -418,7 +426,7 @@ class MatplotlibWidget(QMainWindow):
             month_year = str(date[3:5]+'-'+date[6:8])
             day = int(date[0:2].lstrip('0'))
             try:
-                child = self.treeWidget.invisibleRootItem().child(self.treeWidgetDict[month_year]).child(day-1)
+                child = self.treeWidget.invisibleRootItem().child(TREE_DICT[month_year]).child(day-1)
                 if value == 0:
                     child.setCheckState(False, Qt.Unchecked)
                 else:
@@ -548,7 +556,7 @@ class MatplotlibWidget(QMainWindow):
 
     def update_bg(self):
         self.bg = self.MplWidget.canvas.copy_from_bbox(self.MplWidget.canvas.axes.bbox)
-        #print('UpdateBackground')
+        print('UpdateBackground')
 
 
 #===================================================TAB1===============================================================#
@@ -572,35 +580,24 @@ class MatplotlibWidget(QMainWindow):
     def update_specific_date(self):
         #self.t1_update_pushButton.setEnabled(False)
         d = self.t1_specificday_dateEdit.dateTime().toPyDateTime().date()  # get date from dateEdit
-        var0 = d.strftime('%d/%m/%y')
-        var1 = int(d.strftime('%e').lstrip('0'))  # day
-        var2 = int(d.strftime('%m').lstrip('0'))  # month
-        var3 = int(d.strftime('%y'))              # year
-        var4 = d.strftime('%a')                   # weekday
 
-        dates = [var0]
-        days = [(2 * var1)]
-        months = [var2]
-        years = [var3]
-        week = [var4]
+        dates = [d.strftime('%d/%m/%y')]                    #DATE
+        days = [(2 * int(d.strftime('%e').lstrip('0')))]    #DAYS
+        months = [d.strftime('%m').lstrip('0')]             #MONTH
+        years = [int(d.strftime('%y'))]                     #YEAR
+        week = [d.strftime('%a')]                           #WEEK
 
         output = [days, months, week, years, dates]
-        #print('specific',output)
         self.update_graph(output)
-        self.notes()#output)
+        self.notes()
         #self.notes_enable()
 
     #-----------------------------------------------------------NOTES
-    def notes(self):#,output):
-        # self.days = output[0]
-        # self.months = output[1]
-        # self.week = output[2]
-        # self.years = output[3]
-        # self.dates = output[4]
+    def notes(self):
 
         global text
 
-        conn = sqlite3.connect('PG2020_SQL.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -636,7 +633,7 @@ class MatplotlibWidget(QMainWindow):
         var0 = d.strftime('%d/%m/%y')
         update = self.plainTextEdit.toPlainText()
 
-        databases = ['PG2020_SQL.db','PG2020_SQL_CLEAN.db']
+        databases = [f'PG{YEAR}_SQL.db',f'PG{YEAR}_SQL_CLEAN.db']
         for database in databases:
             conn = sqlite3.connect(database)
             curs = conn.cursor()
@@ -678,7 +675,6 @@ class MatplotlibWidget(QMainWindow):
         self.t2_update_pushButton.setEnabled(True)
         weekday_checkBox_dict = {self.t2_monday_checkBox:'Mon',self.t2_tuesday_checkBox:'Tue',self.t2_wednesday_checkBox:'Wed',self.t2_thursday_checkBox:'Thu',self.t2_friday_checkBox:'Fri',self.t2_saturday_checkBox:'Sat',self.t2_sunday_checkBox:'Sun'}
         if True:
-        #for checkBox in list(weekday_checkBox_dict.keys()):
             if True:
                 try:
                     for legline_raw in self.leg.get_lines():
@@ -706,8 +702,8 @@ class MatplotlibWidget(QMainWindow):
                                 origline_smooth.set_visible(visible_smooth)
                 except:
                     pass
-        window.MplWidget.canvas.draw()
-        window.update_bg()
+        self.MplWidget.canvas.draw()
+        self.update_bg()
 
     #-----------------------------------------------------------TAB2_BUTTONS
     def one_week(self):
@@ -762,11 +758,7 @@ class MatplotlibWidget(QMainWindow):
         last_day = self.t2_end_dateEdit.dateTime().toPyDateTime().date()
         days_diff = (last_day - first_day).days
 
-        dates = []
-        days = []
-        months = []
-        years = []
-        week = []
+        dates,days,months,years,week = [],[],[],[],[]
         for x in range(days_diff + 1):
             tdelta = datetime.timedelta(x)
             d = first_day + tdelta
@@ -782,7 +774,6 @@ class MatplotlibWidget(QMainWindow):
             week.append(var4)
 
         output = [days, months, week, years, dates]
-        #print('Range',output)
         self.update_graph(output)
 
 #======================================================================================================================#
@@ -1113,7 +1104,6 @@ class MatplotlibWidget(QMainWindow):
         
     #-----------------------------------------------------------UPDATES
     def update_graph(self,output):
-        #print('update',output)
         self.days = output[0]
         self.months = output[1]
         self.week = output[2]
@@ -1142,9 +1132,7 @@ class MatplotlibWidget(QMainWindow):
         sun = [i for i, x in enumerate(self.week) if x == 'Sun' and not check_sun]
 
         weekdays_list = mon + tue + wed + thu + fri + sat + sun
-        #print(weekdays_list)
         weekdays_list.sort(reverse=True)
-        #print(weekdays_list)
         for value in weekdays_list:
             del self.days[value]
             del self.months[value]
@@ -1195,7 +1183,7 @@ class MatplotlibWidget(QMainWindow):
         for index0 in range(len(self.dates)):
             myLists.append([0] * 1440)
 
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -1238,10 +1226,6 @@ class MatplotlibWidget(QMainWindow):
             yourLists[index0] = vec
         #---------------------------------------------------------------------------
 
-        #for day in range(len(myLists)):
-            #print(myLists[day])
-            #print(yourLists[day])
-
         global lines, lined_raw, lined_smooth, raw_lines, smooth_lines, alpha_raw, alpha_smooth
         #lines = [] #all lines
         raw_lines = [] #raw lines
@@ -1254,20 +1238,16 @@ class MatplotlibWidget(QMainWindow):
         labels = []
         #print('Before lines plot: ', self.days, self.months, self.week, self.years, self.dates)
         for index in range(len(myLists)):
-            #print(myLists[index])
-
             if not myLists[index].count(None) == len(myLists[index]):
                 labels.append(self.week[index] + ' ' + str(self.dates[index]))
-                #print(myLists[index].count(None),len(myLists[index]),self.dates[index])
                 line1, = self.MplWidget.canvas.axes.plot(time_vec, myLists[index], linewidth=1, label=self.week[index] + ' ' + str(self.dates[index])) #visible=self.rawdata_checkBox.isChecked()
                 line2, = self.MplWidget.canvas.axes.plot(time_vec, yourLists[index], linewidth=1, label=self.week[index] + ' ' + str(self.dates[index])) #visible=smootheddata_checkBox.isChecked()
-                #print(self.dates[index])
                 #lines.append(line1)
                 #lines.append(line2)
                 raw_lines.append(line1)
                 smooth_lines.append(line2)
 
-            self.progressBar.setValue(round((index + 1) * 100 / (len(myLists)), 2))
+            self.progressBar.setValue(int(round((index + 1) * 100 / (len(myLists)), 2)))
 
         #-----------------GRIDLINES-------------------
         self.MplWidget.canvas.axes.grid(alpha = 0.25)
@@ -1292,14 +1272,14 @@ class MatplotlibWidget(QMainWindow):
         #VERTICAL_TIME_LINE
         try:
             annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()#.time()
-            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time,annotate_time],[0, 130], linewidth=1, color='#2989e1',alpha=alpha1)
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time,annotate_time],[0, 130], linewidth=1, color='#2989e1',alpha=ALPHA1)
         except:
             pass
 
         #HORIZONTAL_PEOPLE_LINE
         try:
             annotate_people = self.people_spinBox.value()
-            self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],[annotate_people, annotate_people], linewidth=1, color='#2989e1', alpha=alpha1)
+            self.people_line, = self.MplWidget.canvas.axes.plot([datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)],[annotate_people, annotate_people], linewidth=1, color='#2989e1', alpha=ALPHA1)
         except:
             pass
 
@@ -1366,6 +1346,10 @@ class MatplotlibWidget(QMainWindow):
         self.min_var_label.setText('Calculating')
         self.max_var_label.setText('Calculating')
         self.range_var_label.setText('Calculating')
+        self.mode_var_label.setText('Calculating')
+        self.median_var_label.setText('Calculating')
+        self.sd_var_label.setText('Calculating')
+        self.var_var_label.setText('Calculating')
 
         start_datetime = self.start_timeEdit.dateTime().toPyDateTime()
         end_datetime = self.end_timeEdit.dateTime().toPyDateTime()
@@ -1382,7 +1366,6 @@ class MatplotlibWidget(QMainWindow):
 
         self.analine_visibility()
         #----------------------LOAD_DATA_SQL----------------------------------------------------
-        self.mean_list = []
 
         sm = {}
         rw = {}
@@ -1405,19 +1388,16 @@ class MatplotlibWidget(QMainWindow):
                 del comb[legline_smooth]
 
 
-        self.dates1 = []
-        for i in list(comb.keys()):
-            if comb[i]:
-                self.dates1.append(i.get_label()[4:12])
+        self.dates1 = [i.get_label()[4:12] for i in list(comb.keys()) if comb[i]]
+        # for i in list(comb.keys()):
+        #     if comb[i]:
+        #         self.dates1.append(i.get_label()[4:12])
 
-        #print('self.dates',self.dates)
-        #print('self.dates1',self.dates1)
+        myLists=[[0]*analysis_range]*len(self.dates1)
+        # for index0 in range(len(self.dates1)):
+        #     myLists.append([0]*analysis_range)
 
-        myLists=[]
-        for index0 in range(len(self.dates1)):
-            myLists.append([0]*analysis_range)
-
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -1426,43 +1406,63 @@ class MatplotlibWidget(QMainWindow):
             values = curs.fetchall()
             for index1 in range(analysis_range): #+- 1 out????
                 myLists[index][index1] = values[0][start[0] + index1 + 1]
-                if not myLists[index][index1] == None:
-                    self.mean_list.append(values[0][start[0] + index1 + 1])
 
         curs.close()
         conn.close()
 
-        # print('myLists : ',myLists)
-        # print('Number of days in myLists :',len(myLists))
-        # print('Length of analysis window: ',len(myLists[0]))
-        # print('Analysis range: ',analysis_range)
-        # print('Mean list: ', self.mean_list)
+        stats_list = [c for v in myLists for c in v]
+
+        try:
+            while True:
+                stats_list.remove(10)
+        except ValueError:
+            pass
+    
+        try:
+            while True:
+                stats_list.remove(None)
+        except ValueError:
+            pass
 
         try:
             #MEAN
-            mean_var = int(round(sum(self.mean_list) / len(self.mean_list)))
+            mean_var = int(round(sum(stats_list) / len(stats_list)))
             self.mean_var_label.setText(str(mean_var))
             #MIN
-            min_var = int(round(min(self.mean_list)))
-            min_indices = [num2time(i)[0] for i, x in enumerate(self.mean_list) if x == min_var and x>10]
-            #print('min_indices: ',min_indices)
+            min_var = int(round(min(stats_list)))
             self.min_var_label.setText(str(min_var))
             #MAX
-            max_var = int(round(max(self.mean_list)))
-            max_indices = [num2time(i)[0] for i, x in enumerate(self.mean_list) if x == max_var and x>10]
-            #print('max_indices: ',max_indices)                                                                                          #WRONG BECAUSE MEANLIST SHIRTER THAN 1440
+            max_var = int(round(max(stats_list)))                                                                                       #WRONG BECAUSE MEANLIST SHIRTER THAN 1440
             self.max_var_label.setText(str(max_var))
             #RANGE
             range_var = max_var - min_var + 1
             self.range_var_label.setText(str(range_var))
+            #MODE
+            mode_var = mode(stats_list)
+            self.mode_var_label.setText(str(mode_var))
+            #MEDIAN
+            median_var = median(stats_list)
+            self.median_var_label.setText(str(round(median_var,1)))
+            #SD
+            sd_var = stdev(stats_list)
+            self.sd_var_label.setText(str(round(sd_var,1)))
+            #VAR
+            var_var = variance(stats_list)
+            self.var_var_label.setText(str(round(var_var,1)))
+
+            print('Analysis updated sucessfully...')
         except:
             self.mean_var_label.setText('No Data')
             self.min_var_label.setText('No Data')
             self.max_var_label.setText('No Data')
             self.range_var_label.setText('No Data')
+            self.mode_var_label.setText('No Data')
+            self.median_var_label.setText('No Data')
+            self.sd_var_label.setText('No Data')
+            self.var_var_label.setText('No Data')      
+            print('Analysis update fail...')  
+        
 
-        print('Analysis updated sucessfully...')
-        #self.max_annotation(max_indices)
 
 #======================================================================================================================#
 
@@ -1478,11 +1478,7 @@ class MatplotlibWidget(QMainWindow):
             row = self.tableWidget.currentRow()
             self.table_changed_col.append(column)
             self.table_changed_row.append(row)
-            # print(self.table_changed_col,self.table_changed_row)
             self.tableWidget.item(row,column).setBackground(QtGui.QColor(225,225,0))
-    
-    def tree_change(self):
-        pass
 
     def tree_popup(self):
         msg = QMessageBox()
@@ -1504,7 +1500,7 @@ class MatplotlibWidget(QMainWindow):
             month_year = str(date[3:5].lstrip('0')+'-'+date[6:8])
             day = int(date[0:2].lstrip('0'))
             try:
-                child = self.treeWidget.invisibleRootItem().child(self.treeWidgetDict[month_year]).child(day-1)
+                child = self.treeWidget.invisibleRootItem().child(TREE_DICT[month_year]).child(day-1)
                 ml_total += 1
                 if child.checkState(0) == Qt.Checked:
                     ml_checkbox_dict[date] = 1
@@ -1514,13 +1510,12 @@ class MatplotlibWidget(QMainWindow):
 
             except:
                 pass
-        #print(ml_checkbox_dict)
+
         self.ml_lineEdit.setText(str(ml_used)+'/'+str(ml_total))
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
         for key in list(ml_checkbox_dict.keys()):
-            #print(ml_checkbox_dict[key], key)
             curs.execute("UPDATE puregym_table SET ML = '{}' WHERE Day = '{}'".format(ml_checkbox_dict[key],key))
         conn.commit()
         curs.close()
@@ -1533,7 +1528,6 @@ class MatplotlibWidget(QMainWindow):
         xmin = int(np.floor((xmin-18262)*1440))
         xmax = int(np.ceil((xmax-18262)*1440))
         xrange = xmax-xmin+1
-        # print(xmin,xmax,xrange)
 
         cols=[]
         for i in range(xrange):
@@ -1554,7 +1548,6 @@ class MatplotlibWidget(QMainWindow):
             dict[column].append(row)
 
         for i in list(dict.keys()):
-            #print(dict[i])
             y1=dict[i][0]
             y2=dict[i][-1]
             self.tableWidget.setRangeSelected(QTableWidgetSelectionRange(y1,i,y2,i),True)
@@ -1618,7 +1611,6 @@ class MatplotlibWidget(QMainWindow):
     def editor_load(self):
         self.itemchangeconnected = False
         selected = self.treeWidget.selectedItems()
-        #if selected:
         basenode = selected[0]
         childnode = basenode.text(0)
         if not childnode[-4:-2] == '20':
@@ -1626,7 +1618,6 @@ class MatplotlibWidget(QMainWindow):
             y = int('20' + self.datestr[-2:])
             m = int(self.datestr[-5:-3].lstrip('0'))
             d = int(self.datestr[-8:-6].lstrip('0'))
-            # print(self.datestr, y, m, d)
             selected_datetime = datetime.datetime(y,m,d,23,59,59,0)
             current_datetime = datetime.datetime.today()
 
@@ -1634,22 +1625,8 @@ class MatplotlibWidget(QMainWindow):
                 self.tree_popup()
             else:
                 self.editor_dateEdit.setDateTime(datetime.datetime(y, m, d, 0, 0, 0, 0))
-            # try:
-            #     selected = self.treeWidget.selectedItems()
-            #     if selected:
-            #         basenode = selected[0]
-            #         childnode = basenode.text(0)
-            #         if not childnode[-4:-2] == '20':
-            #             self.datestr = childnode[-8:]
-            #             y = int('20' + self.datestr[-2:])
-            #             m = int(self.datestr[-5:-3].lstrip('0'))
-            #             d = int(self.datestr[-8:-6].lstrip('0'))
-            #             print(self.datestr, y, m, d)
-            #             self.editor_dateEdit.setDateTime(datetime.datetime(y, m, d, 0, 0, 0, 0))
-            # except:
-            #     print('Error in tree item selection')
 
-                databases = ['PG2020_SQL.db', 'PG2020_SQL_CLEAN.db']
+                databases = [f'PG{YEAR}_SQL.db', f'PG{YEAR}_SQL_CLEAN.db']
                 # global raw_data, clean_data
                 self.clean_data = [None] * 1440
                 self.raw_data = [None] * 1440
@@ -1657,7 +1634,7 @@ class MatplotlibWidget(QMainWindow):
                 input = self.editor_dateEdit.dateTime().toPyDateTime().date()
                 self.var0 = input.strftime('%d/%m/%y')
                 weekday = input.strftime('%a')
-                none_tally = {'PG2020_SQL.db': 0, 'PG2020_SQL_CLEAN.db': 0}
+                none_tally = {f'PG{YEAR}_SQL.db': 0, f'PG{YEAR}_SQL_CLEAN.db': 0}
                 for database, output in zip(databases, output_vectors):
                     conn = sqlite3.connect(database)
                     curs = conn.cursor()
@@ -1672,7 +1649,7 @@ class MatplotlibWidget(QMainWindow):
                         row = int(index1 % 60)
                         if entry is None:
                             none_tally[database] += 1
-                        if database == 'PG2020_SQL_CLEAN.db':
+                        if database == f'PG{YEAR}_SQL_CLEAN.db':
                             self.tableWidget.setItem(row, col, QTableWidgetItem(str(entry)))
 
                     curs.close()
@@ -1728,11 +1705,11 @@ class MatplotlibWidget(QMainWindow):
                 # GRIDLINES
                 self.editor_gridlines()
                 # NONE_COUNT
-                self.none_lineEdit.setText(str(none_tally['PG2020_SQL.db']))
-                self.none_lineEdit_2.setText(str(none_tally['PG2020_SQL_CLEAN.db']))
+                self.none_lineEdit.setText(str(none_tally[f'PG{YEAR}_SQL.db']))
+                self.none_lineEdit_2.setText(str(none_tally[f'PG{YEAR}_SQL_CLEAN.db']))
 
                 #self.editor_reset_pushButton.setEnabled(True)
-                if none_tally['PG2020_SQL.db'] == none_tally['PG2020_SQL_CLEAN.db']:
+                if none_tally[f'PG{YEAR}_SQL.db'] == none_tally[f'PG{YEAR}_SQL_CLEAN.db']:
                     self.editor_reset_pushButton.setEnabled(False)
                 else:
                     self.editor_reset_pushButton.setEnabled(True)
@@ -1776,7 +1753,7 @@ class MatplotlibWidget(QMainWindow):
         var0 = input.strftime('%d/%m/%y')
         # weekday = input.strftime('%a')
     
-        conn = sqlite3.connect('PG2020_SQL.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
         curs.execute("SELECT * FROM puregym_table WHERE Day = '{}'".format(var0))
@@ -1808,9 +1785,7 @@ class MatplotlibWidget(QMainWindow):
                 else:
                     table_list.append(int(cell))
 
-        # print(table_list)
-
-        conn_write = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn_write = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs_write = conn_write.cursor()
         curs_write.execute("PRAGMA journal_mode=WAL;")
 
@@ -1855,13 +1830,6 @@ class MatplotlibWidget(QMainWindow):
         self.editor_progressBar.setValue(0)
 
         table_list = []                                                     #get list of all values (changed) in table
-        # for i in range(24):
-        #     for j in range(60):
-        #         cell = self.tableWidget.item(j, i).text()
-        #         if cell == 'None':
-        #             table_list.append(None)
-        #         else:
-        #             table_list.append(int(cell))
 
         for i, j in zip(self.table_changed_col,self.table_changed_row):
             self.tableWidget.item(j, i).setBackground(QtGui.QColor(225, 225, 225))
@@ -1871,26 +1839,13 @@ class MatplotlibWidget(QMainWindow):
                 table_list.append(None)
             else:
                 table_list.append(int(cell))
-
-        #print(table_list)
     
         input = self.editor_dateEdit.dateTime().toPyDateTime().date()
         var0 = input.strftime('%d/%m/%y')
     
-        conn_write = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn_write = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs_write = conn_write.cursor()
         curs_write.execute("PRAGMA journal_mode=WAL;")
-    
-        # for num in range(1440):
-        #     self.editor_progressBar.setValue(num / 1440)
-        #     QApplication.processEvents()  # doesn't work
-        #     print(num)
-        #     if table_list[num] is None:
-        #         curs_write.execute("UPDATE puregym_table SET t{} = NULL WHERE Day = '{}'".format(num + 1, var0))
-        #     else:
-        #         curs_write.execute(
-        #             "UPDATE puregym_table SET t{} = {} WHERE Day = '{}'".format(num + 1, table_list[num], var0))
-        #     conn_write.commit()
 
         for num in range(len(table_list)):
             tposition = (self.table_changed_col[num]*60)+self.table_changed_row[num]+1
@@ -1911,7 +1866,7 @@ class MatplotlibWidget(QMainWindow):
         self.editor_load()
         self.editor_progressBar.setValue(1)
         self.itemchangeconnected = True
-        print('Table saved...')
+        #print('Table saved...')
 
     #-----------------------------------------------------------INTERPOLATION
     def short_interp(self):
@@ -1938,17 +1893,12 @@ class MatplotlibWidget(QMainWindow):
             print(i,j,index1,str(self.clean_data[index1]))
             self.tableWidget.setItem(j,i,QTableWidgetItem(str(self.clean_data[index1])))
             self.tableWidget.item(j,i).setBackground(QtGui.QColor(225,225,0))
-        # for index1 in range(1440):
-        #     col = int((index1 - index1 % 60) / 60)
-        #     row = int(index1 % 60)
-        #     print(self.clean_data[index1])
-        #     self.tableWidget.setItem(row, col, QTableWidgetItem(str(self.clean_data[index1])))
 
         #self.table_change = False
         self.editor_save_pushButton.setEnabled(True)
         self.editor_progressBar.setValue(1)
         self.itemchangeconnected = True
-        print('Table saved...')
+        #print('Table saved...')
 
     def interp_tests(self):
         # ===SINGLE DAY INTERPOLATION TEST===#
@@ -1961,7 +1911,7 @@ class MatplotlibWidget(QMainWindow):
             t = dt.strftime('%H:%M')
             time_vec_strf.append(t)
 
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -1978,10 +1928,6 @@ class MatplotlibWidget(QMainWindow):
 
         dict = {'Time': time_vec_strf, 'Number': num_vec}
         df0 = pd.DataFrame(dict)
-
-        # num_vec[200:300] = [None] * 100
-        # num_vec[700:800] = [None] * 100
-        # num_vec[1100:1200] = [None] * 100
         df1 = pd.DataFrame(dict)
 
         df2 = df1.interpolate().round(decimals=0)
@@ -2057,7 +2003,7 @@ class MatplotlibWidget(QMainWindow):
             t = dt.strftime('%H:%M')
             time_vec_strf.append(t)
 
-        conn = sqlite3.connect('PG2020_SQL_CLEAN.db')
+        conn = sqlite3.connect(f'PG{YEAR}_SQL_CLEAN.db')
         curs = conn.cursor()
         curs.execute("PRAGMA journal_mode=WAL;")
 
@@ -2074,14 +2020,9 @@ class MatplotlibWidget(QMainWindow):
 
         dict = {'Time': time_vec_strf, 'Number': num_vec}
         df1 = pd.DataFrame(dict)
-        print(df1)
-        print(self.editor_comboBox.currentText())
         if self.editor_comboBox.currentText() == 'Spline':
-            print('Spline')
             df1 = df1.interpolate(method='spline',order=int(self.editor_spline_spinBox.value())).round(decimals=0)
         else:
-            print('Other')
-            print(self.editor_comboBox.currentText())
             df1 = df1.interpolate(method=method_dict[self.editor_comboBox.currentText()]).round(decimals=0)
 
         #SEE INTERPOLATED GRAPH
@@ -2097,7 +2038,6 @@ class MatplotlibWidget(QMainWindow):
 
         # for i, j in zip(self.table_changed_row,self.table_changed_col):                                                  # DOES NOT WORK CHANGES ALL CELLS
         #     self.tableWidget.item(j, i).setBackground(QtGui.QColor(225, 225, 0))
-        print(self.table_changed_col)
         self.itemchangeconnected = True
         self.editor_save_pushButton.setEnabled(True)
 
@@ -2112,12 +2052,10 @@ class MatplotlibWidget(QMainWindow):
         self.itemchangeconnected = False
         start_index = time2num(self.editor_start_timeEdit.dateTime().toPyDateTime().time())
         end_index = time2num(self.editor_end_timeEdit.dateTime().toPyDateTime().time())
-        print(start_index,end_index)
 
         xmin = start_index[0]
         xmax = end_index[0]
         xrange = xmax - xmin + 1
-        print(xmin, xmax, xrange)
 
         cols = []
         for i in range(xrange):
@@ -2155,15 +2093,16 @@ class MatplotlibWidget(QMainWindow):
 #======================================================================================================================#
 
 #-------------DRIVER_CODE-----------------#|
-#def main():                              #|
-app = QApplication([])                    #|
-app.setStyle('Fusion')                    #|
-window = MatplotlibWidget()               #|
-window.show()                             #|
-#window.today()                            #|
-window.update_specific_date()             #|
-app.exec_()                               #|
+def main():                               #|
+    app = QApplication([])                #|
+    app.setStyle('Fusion')                #|
+    window = MatplotlibWidget()   
+    print('Window created.')        #|
+    window.show()                         #|
+    #window.today()                       #|
+    window.update_specific_date()         #|
+    app.exec_()                           #|
                                           #|
-#if __name__ == '__main__':               #|
-   #main()                                #|
+if __name__ == '__main__':                #|
+   main()                                 #|
 #-----------------------------------------#|

@@ -1,9 +1,6 @@
 #----------------------------------------------
 #----------------mplwidget.py------------------
 #----------------------------------------------
-
-# Note: mplwidget.py has no version as it is unlikely to need changing.
-
 from PyQt5.QtWidgets import *
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.figure import Figure
