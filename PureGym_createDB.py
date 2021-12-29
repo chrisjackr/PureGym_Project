@@ -3,10 +3,6 @@ import sqlite3
 import datetime
 import os
 
-
-YEAR = 2021
-DATABASES = [f'\PureGymAnlaysis\PG{YEAR}_SQL.db',f'\PureGymAnlaysis\PG{YEAR}_SQL_CLEAN.db'] 
-
 def main():
     for database in DATABASES:
         ###--------------CREATE TABLE------------------###
@@ -44,7 +40,38 @@ def main():
         # c.execute("ALTER TABLE puregym_table ADD ML INTEGER")
         # conn.commit()
 
+def insert():
+    for database in DATABASES:
+        ###--------------CREATE TABLE------------------###
+        DIR_NAME = os.path.dirname(os.path.abspath(__file__))
+        conn = sqlite3.connect(DIR_NAME+f'{database}')
+        c = conn.cursor()
+
+        ###-----CREATE & INSERT NULL ROWS--------------###
+        CALENDAR = []
+        tdelta = datetime.timedelta(days=1)
+        sdate = datetime.date(YEAR,1,1)
+        edate = datetime.date(YEAR,9,30)
+        delta = edate-sdate
+        for i in range(delta.days+1):
+            date = sdate + datetime.timedelta(days=i)
+            CALENDAR.append(date.strftime('%d/%m/%y'))
+
+        for date in CALENDAR:
+            strrow = "'{}', ".format(date) #strrow = "'01/01/20', "
+            for i in range(1440):
+                strrow = strrow + 'NULL, '
+            strrow = strrow + 'NULL, 0'
+            c.execute("INSERT INTO puregym_table VALUES ({})".format(strrow))
+        conn.commit()
+
+        print(database+' updated.')
+
+
 if __name__ == '__main__':
     print('\n =============== START ============ \n')
-    main()
+    YEAR = 2020
+    DATABASES = [f'\PureGymAnlaysis\PG{YEAR}_SQL.db',f'\PureGymAnlaysis\PG{YEAR}_SQL_CLEAN.db'] 
+    #main()
+    #insert()
     print('\n ================ END ============= \n')
