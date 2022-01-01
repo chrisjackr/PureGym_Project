@@ -3,6 +3,8 @@ __pycache__/
 logs/
 Tests/
 
+PureGym_credentials.py
+
 subtitles.srt
 subtitles.txt
 PureGym GUI Demo.mp4
