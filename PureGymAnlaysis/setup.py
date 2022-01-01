@@ -4,10 +4,10 @@ import datetime
 from PyQt5.QtCore import *
 
 #=== YEAR TO SHOW ===#
-YEAR = 2020
+YEAR = 2022
 MONTH = 12
 DAY = 15
-TODAY = False
+TODAY = True
 
 if TODAY:
     YEAR = int(datetime.datetime.today().strftime('%Y'))
