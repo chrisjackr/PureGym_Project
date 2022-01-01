@@ -11,10 +11,11 @@ import requests
 from lxml import html
 import re
 import logging
+from PureGym_credentials import EMAIL, PIN
 
 #============LOGGER===============
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter('[%(asctime)s] %(levelname)s: %(name)s --- %(message)s')
 #logger.setFormatter(formatter)
 
@@ -53,8 +54,8 @@ def login_request():
         token = tree.xpath("/html/body/div/main/div/form[2]/input/@value")[0]
 
         payload = {
-            'username': 'cjr1977@hotmail.co.uk',
-            'password': '34308915',
+            'username': EMAIL,
+            'password': PIN,
             '__RequestVerificationToken': token
         }
         logger.info(payload)
@@ -73,7 +74,7 @@ def login_request():
 def scrape_page(s):
     # Refresh members page
     members_result = s.get(MEMBERS_PAGE)
-    check_status(members_result, 'Finding members page ')
+    logger.debug('Finding members page '+str(members_result.status_code))
 
     #Search for info using regex
     try:
@@ -89,7 +90,7 @@ def scrape_page(s):
         search_num = re.findall(r'there are.*\>(\d+) (?:or fewer )?(?:of \d+ )?people', members_result.text)
         if len(search_num) == 1 and int(search_num[0])>=0:
             gym_people = search_num[0]
-            logger.info(f"There are {gym_people} people in {gym_nice}.") 
+            logger.debug(f"There are {gym_people} people in {gym_nice}.") 
             return gym_people   
     except:
         logger.warning("Could not find number of poeple.")
@@ -108,7 +109,7 @@ def logout_request(s):
     logout_result = s.get(frame.attrib.get('src'))
     logger.debug(logout_result.status_code)
 
-def append_to_database(output):
+def append_to_database(num,output,day,month,year):
     for database in DATABASES:
         logger.debug(DIR_NAME+database)
         try:
@@ -122,7 +123,8 @@ def append_to_database(output):
             curs_write.close()
             conn_write.close()
         except:
-            logger.Error('Could not write to '+DIR_NAME+database)
+            conn_write.close()
+            logger.error('Could not write to '+DIR_NAME+database)
 
 
 
@@ -134,7 +136,7 @@ if __name__ == "__main__":
     if secs>10:
         time.sleep(61-secs)
 
-    DATABASES = ['\PureGymAnlaysis\PG2020_SQL.db','\PureGymAnlaysis\PG2020_SQL_CLEAN.db'] 
+    DATABASES = ['\PureGymAnlaysis\PG2022_SQL.db','\PureGymAnlaysis\PG2022_SQL_CLEAN.db'] 
     FAILS = 0
 
     while True:
@@ -154,7 +156,7 @@ if __name__ == "__main__":
             year =  datee.strftime('%y')
 
             num = int((hour * 60) + minute) + 1 #plus 1 bc first time column in table is t1
-            append_to_database(output)
+            append_to_database(num,output,day,month,year)
             print('{}:{}:{}   Count: {}'.format(str(hour).zfill(2),str(minute).zfill(2),str(second).zfill(2),output))
 
             end = time.time()
