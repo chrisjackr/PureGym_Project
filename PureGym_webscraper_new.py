@@ -15,7 +15,7 @@ from PureGym_credentials import EMAIL, PIN
 
 #============LOGGER===============
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('[%(asctime)s] %(levelname)s: %(name)s --- %(message)s')
 #logger.setFormatter(formatter)
 
@@ -90,7 +90,7 @@ def scrape_page(s):
         search_num = re.findall(r'there are.*\>(\d+) (?:or fewer )?(?:of \d+ )?people', members_result.text)
         if len(search_num) == 1 and int(search_num[0])>=0:
             gym_people = search_num[0]
-            logger.debug(f"There are {gym_people} people in {gym_nice}.") 
+            logger.debug("There are {} people in {}.".format(gym_people,gym_nice)) 
             return gym_people   
     except:
         logger.warning("Could not find number of poeple.")
@@ -113,7 +113,7 @@ def append_to_database(num,output,day,month,year):
     for database in DATABASES:
         logger.debug(DIR_NAME+database)
         try:
-            conn_write = sqlite3.connect(DIR_NAME+database)
+            conn_write = sqlite3.connect(os.path.join(DIR_NAME,database))
             curs_write = conn_write.cursor()
             curs_write.execute("PRAGMA journal_mode=WAL;") #Activate 'Write-Ahead Logging'
 
@@ -130,13 +130,16 @@ def append_to_database(num,output,day,month,year):
 
 if __name__ == "__main__":
     print('\n =============== START SCRAPE ============ \n')
+
+    YEAR = input('Input database year: ')
     s = login_request()
 
     secs = int(datetime.datetime.today().strftime('%S'))
     if secs>10:
         time.sleep(61-secs)
 
-    DATABASES = ['\PureGymAnlaysis\PG2022_SQL.db','\PureGymAnlaysis\PG2022_SQL_CLEAN.db'] 
+    DATABASES = [os.path.join('PureGymAnlaysis','PG{}_SQL.db'.format(YEAR)),
+                 os.path.join('PureGymAnlaysis','PG{}_SQL_CLEAN.db'.format(YEAR))] 
     FAILS = 0
 
     while True:
@@ -172,4 +175,4 @@ if __name__ == "__main__":
                 s = login_request()
             else:
                 logger.critical('SCRAPING TERMINATED.')
-                sys.quit(1)
+                quit()
