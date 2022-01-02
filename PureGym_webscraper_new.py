@@ -162,10 +162,11 @@ if __name__ == "__main__":
             end = time.time()
             wait = 60.000000 - (end - start + 0.0065) % 60.000000
             time.sleep(wait)
+            FAILS = 0
         
         except: 
             logout_request(s)
-            if FAILS < 4:
+            if FAILS < 3:
                 FAILS += 1
                 logger.error('Did not save.')
                 s = login_request()
