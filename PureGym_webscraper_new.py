@@ -15,7 +15,7 @@ from PureGym_credentials import EMAIL, PIN
 
 #============LOGGER===============
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter('[%(asctime)s] %(levelname)s: %(name)s --- %(message)s')
 #logger.setFormatter(formatter)
 
