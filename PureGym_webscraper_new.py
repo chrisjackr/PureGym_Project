@@ -8,6 +8,7 @@ import time
 import datetime
 import os, sys
 import requests
+from requests.exceptions import TooManyRedirects
 from lxml import html
 import re
 import logging
@@ -41,35 +42,38 @@ def check_status(code,msg):
     else:
         logger.debug(msg+'successful.')
 
-def login_request():
-    with requests.Session() as s:
-        login_result = s.get(LOGIN_PAGE)
-        check_status(login_result,'Login ')
+def login_request(s):
+    logger.info('LOGIN')
+    login_result = s.get(LOGIN_PAGE)
+    check_status(login_result,'Login ')
 
-        if b"The members area and class booking are currently unavailable" in login_result.content:
-            print('The members area and class booking are currently unavailable')
-            sys.exit(1)
+    if b"The members area and class booking are currently unavailable" in login_result.content:
+        print('The members area and class booking are currently unavailable')
+        sys.exit(1)
 
-        tree = html.fromstring(login_result.text)
-        token = tree.xpath("/html/body/div/main/div/form[2]/input/@value")[0]
+    tree = html.fromstring(login_result.text)
+    token = tree.xpath("/html/body/div/main/div/form[2]/input/@value")[0]
 
-        payload = {
-            'username': EMAIL,
-            'password': PIN,
-            '__RequestVerificationToken': token
-        }
-        logger.info(payload)
+    payload = {
+        'username': EMAIL,
+        'password': PIN,
+        '__RequestVerificationToken': token
+    }
 
-        #Post the data back to the same page
-        login_result = s.post(login_result.url, data=payload)
-        check_status(login_result,'Login ')
+    header = {
+        'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebkit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
+    }
 
-        # OIDC
-        form = html.fromstring(login_result.text).forms[0]
-        login_result = s.post(form.action, data=form.form_values())
-        check_status(login_result,'Login (OIDC) ')
+    logger.debug(payload)
 
-        return s
+    #Post the data back to the same page
+    login_result = s.post(login_result.url, data=payload, headers=header)
+    check_status(login_result,'Login ')
+
+    # OIDC
+    form = html.fromstring(login_result.text).forms[0]
+    login_result = s.post(form.action, data=form.form_values())
+    check_status(login_result,'Login (OIDC) ')
     
 def scrape_page(s):
     # Refresh members page
@@ -98,6 +102,7 @@ def scrape_page(s):
 
 def logout_request(s):
     # get logout page
+    logger.info('LOGOUT')
     logout_result = s.get(LOGOUT_PAGE)
     logger.debug(logout_result.status_code)
     # which contains an iframe
@@ -132,47 +137,55 @@ if __name__ == "__main__":
     print('\n =============== START SCRAPE ============ \n')
 
     YEAR = input('Input database year: ')
-    s = login_request()
+    with requests.Session() as s:
+        login_request(s)
 
-    secs = int(datetime.datetime.today().strftime('%S'))
-    if secs>10:
-        time.sleep(61-secs)
+        secs = int(datetime.datetime.today().strftime('%S'))
+        if secs>10:
+            time.sleep(61-secs)
 
-    DATABASES = [os.path.join('PureGymAnlaysis','PG{}_SQL.db'.format(YEAR)),
-                 os.path.join('PureGymAnlaysis','PG{}_SQL_CLEAN.db'.format(YEAR))] 
-    FAILS = 0
+        fails = 0
+        DATABASES = [os.path.join('PureGymAnlaysis','PG{}_SQL.db'.format(YEAR)),
+                    os.path.join('PureGymAnlaysis','PG{}_SQL_CLEAN.db'.format(YEAR))] 
 
-    while True:
-        try:
-            start = time.time()
+        while True:
+            try:
+                start = time.time()
 
-            output = scrape_page(s)
+                try:
+                    output = scrape_page(s)
+                except ConnectionError:
+                    logger.error('ConnectionError when refreshing.')
+                    output = None
 
-            now = datetime.datetime.today()
-            timee = now.time()
-            datee = now.date()
-            minute = int(timee.strftime('%M'))
-            hour = int(timee.strftime('%H'))
-            second = int(timee.strftime('%S'))
-            day = datee.strftime('%d')
-            month = datee.strftime('%m')
-            year =  datee.strftime('%y')
+                now = datetime.datetime.today()
+                timee = now.time()
+                datee = now.date()
+                minute = int(timee.strftime('%M'))
+                hour = int(timee.strftime('%H'))
+                second = int(timee.strftime('%S'))
+                day = datee.strftime('%d')
+                month = datee.strftime('%m')
+                year =  datee.strftime('%y')
 
-            num = int((hour * 60) + minute) + 1 #plus 1 bc first time column in table is t1
-            append_to_database(num,output,day,month,year)
-            print('{}:{}:{}   Count: {}'.format(str(hour).zfill(2),str(minute).zfill(2),str(second).zfill(2),output))
+                num = int((hour * 60) + minute) + 1 #plus 1 bc first time column in table is t1
+                append_to_database(num,output,day,month,year)
+                print('{}:{}:{} |{}|  Count: {}'.format(str(hour).zfill(2),str(minute).zfill(2),str(second).zfill(2),fails,output))
 
-            end = time.time()
-            wait = 60.000000 - (end - start + 0.0065) % 60.000000
-            time.sleep(wait)
-            FAILS = 0
-        
-        except: 
-            logout_request(s)
-            if FAILS < 3:
-                FAILS += 1
-                logger.error('Did not save.')
-                s = login_request()
-            else:
-                logger.critical('SCRAPING TERMINATED.')
-                quit()
+                end = time.time()
+                wait = 60.000000 - (end - start + 0.0065) % 60.000000
+                time.sleep(wait)
+                fails = 0
+            
+            except: 
+                logout_request(s)
+                if fails < 3:
+                    fails += 1
+                    logger.error('Did not save. FAILS = {}/3'.format(fails))
+                    try:
+                        login_request(s)
+                    except TooManyRedirects:
+                        logger.error('TooManyRedirects when trying to login.')
+                else:
+                    logger.critical('SCRAPING TERMINATED.')
+                    quit()
