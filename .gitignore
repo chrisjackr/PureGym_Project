@@ -4,6 +4,7 @@ logs/
 Tests/
 
 PureGym_credentials.py
+PureGymGUI_v2_00_rpi.py
 
 subtitles.srt
 subtitles.txt
