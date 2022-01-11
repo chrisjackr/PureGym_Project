@@ -144,6 +144,7 @@ if __name__ == "__main__":
 
     YEAR = input('Input database year: ')
     fails = 0
+    max_fails = 3
     DATABASES = [os.path.join('PureGymAnlaysis','PG{}_SQL.db'.format(YEAR)),
                 os.path.join('PureGymAnlaysis','PG{}_SQL_CLEAN.db'.format(YEAR))] 
 
@@ -188,14 +189,12 @@ if __name__ == "__main__":
                     logger.debug('Wait {}s'.format(wait))
                     fails = 0
                 except: 
-                    run = False 
-                    logger.info('FALSE')
-                                         
-                    if fails < 3:
+                    run = False                  
+                    if fails < max_fails:
                         fails += 1
-                        logger.error('Did not save. FAILS = {}/3'.format(fails))
+                        logger.error('FAILS = {}/{}'.format(fails, max_fails))
                     else:
-                        logger.critical('SCRAPING TERMINATED.')
+                        logger.critical('FAILS = {}/{} SCRAPING TERMINATED.'.format(max_fails, max_fails))
                         quit()
 
 
