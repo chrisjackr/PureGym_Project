@@ -398,7 +398,7 @@ class MatplotlibWidget(QMainWindow):
 
         self.MplWidget1.canvas.axes.set_xticks(x_list, minor=False)
         self.MplWidget1.canvas.axes.set_xlim((datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0)))
-        self.MplWidget1.canvas.axes.set_ylim((0, 130))
+        self.MplWidget1.canvas.axes.set_ylim((0, 165))
         self.MplWidget1.canvas.axes.spines['top'].set_visible(False)
         self.MplWidget1.canvas.axes.spines['right'].set_visible(False)
         self.MplWidget1.canvas.axes.set_position([0.05, 0.11, 0.92, 0.85])
@@ -806,7 +806,7 @@ class MatplotlibWidget(QMainWindow):
             if self.time_checkBox.isChecked():
                 self.MplWidget.canvas.restore_region(self.bg)
                 annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
-                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 165],
                                                                   linewidth=1,color='#2989e1', alpha=0.2, animated = True, visible=True)
                 self.MplWidget.canvas.axes.draw_artist(self.time_line)
         else:
@@ -817,10 +817,10 @@ class MatplotlibWidget(QMainWindow):
                 pass
             annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
             if self.time_checkBox.isChecked():
-                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 165],
                                                                   linewidth=1, color='#2989e1', alpha=0.2, visible=True)
             else:
-                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+                self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 165],
                                                                   linewidth=1, color='#2989e1', alpha=0.2, visible=False)
             self.MplWidget.canvas.draw()
             self.update_bg()
@@ -831,10 +831,10 @@ class MatplotlibWidget(QMainWindow):
         self.MplWidget.canvas.restore_region(self.bg)
         annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()
         if self.time_checkBox.isChecked():
-            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 165],
                                                               linewidth=1, color='#2989e1', alpha=0.2, visible=True)
         else:
-            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 130],
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time, annotate_time], [0, 165],
                                                               linewidth=1, color='#2989e1', alpha=0.2, visible=False)
         self.MplWidget.canvas.draw()
         self.update_bg()
@@ -935,7 +935,7 @@ class MatplotlibWidget(QMainWindow):
             if self.analysis_checkBox.isChecked():
                 self.MplWidget.canvas.restore_region(self.bg)
                 start_time = self.start_timeEdit.dateTime().toPyDateTime()
-                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, animated=True, visible=True)
                 self.MplWidget.canvas.axes.draw_artist(self.analine1)
         else:
@@ -946,10 +946,10 @@ class MatplotlibWidget(QMainWindow):
                 pass
             start_time = self.start_timeEdit.dateTime().toPyDateTime()
             if self.analysis_checkBox.isChecked():
-                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, visible=True)
             else:
-                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+                self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, visible=False)
             self.MplWidget.canvas.draw()
             self.update_bg()
@@ -960,10 +960,10 @@ class MatplotlibWidget(QMainWindow):
         self.MplWidget.canvas.restore_region(self.bg)
         start_time = self.start_timeEdit.dateTime().toPyDateTime()
         if self.analysis_checkBox.isChecked():
-            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 165],
                                                               linewidth=1, color='g', alpha=0.2, visible=True)
         else:
-            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 130],
+            self.analine1, = self.MplWidget.canvas.axes.plot([start_time, start_time], [0, 165],
                                                               linewidth=1, color='g', alpha=0.2, visible=False)
         self.MplWidget.canvas.draw()
         self.update_bg()
@@ -1006,7 +1006,7 @@ class MatplotlibWidget(QMainWindow):
             if self.analysis_checkBox.isChecked():
                 self.MplWidget.canvas.restore_region(self.bg)
                 end_time = self.end_timeEdit.dateTime().toPyDateTime()
-                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, animated=True, visible=True)
                 self.MplWidget.canvas.axes.draw_artist(self.analine2)
         else:
@@ -1018,10 +1018,10 @@ class MatplotlibWidget(QMainWindow):
             end_time = self.end_timeEdit.dateTime().toPyDateTime()
             #end_time = datetime.datetime(2020,1,1,5,0,0,0)
             if self.analysis_checkBox.isChecked():
-                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, visible=True)
             else:
-                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+                self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 165],
                                                                   linewidth=1, color='g', alpha=0.2, visible=False)
             self.MplWidget.canvas.draw()
             self.update_bg()
@@ -1032,10 +1032,10 @@ class MatplotlibWidget(QMainWindow):
         self.MplWidget.canvas.restore_region(self.bg)
         end_time = self.end_timeEdit.dateTime().toPyDateTime()
         if self.analysis_checkBox.isChecked():
-            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 165],
                                                               linewidth=1, color='g', alpha=0.2, visible=True)
         else:
-            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 130],
+            self.analine2, = self.MplWidget.canvas.axes.plot([end_time, end_time], [0, 165],
                                                               linewidth=1, color='g', alpha=0.2, visible=False)
         self.MplWidget.canvas.draw()
         self.update_bg()
@@ -1169,8 +1169,8 @@ class MatplotlibWidget(QMainWindow):
         self.MplWidget.canvas.axes.set_xticks(x_list, minor=False) #could set up 15min list for minors
         #self.MplWidget.canvas.axes.set_xlim((datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 2, 0, 0, 0, 0)))  # x-axis end lim 00:00
         self.MplWidget.canvas.axes.set_xlim((datetime.datetime(2020, 1, 1, 0, 0, 0, 0), datetime.datetime(2020, 1, 1, 23, 59, 0, 0))) # x-axis end lim 23:59
-        #self.MplWidget.canvas.axes.axis([0, 1440, 0, 130])
-        self.MplWidget.canvas.axes.set_ylim((0, 130))                                                                          # set x_lim for old time_vec
+        #self.MplWidget.canvas.axes.axis([0, 1440, 0, 165])
+        self.MplWidget.canvas.axes.set_ylim((0, 165))                                                                          # set x_lim for old time_vec
 
         #OTHER PLOT DETAILS
         self.MplWidget.canvas.axes.set_xlabel('Time')
@@ -1272,7 +1272,7 @@ class MatplotlibWidget(QMainWindow):
         #VERTICAL_TIME_LINE
         try:
             annotate_time = self.specifictime_timeEdit.dateTime().toPyDateTime()#.time()
-            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time,annotate_time],[0, 130], linewidth=1, color='#2989e1',alpha=ALPHA1)
+            self.time_line, = self.MplWidget.canvas.axes.plot([annotate_time,annotate_time],[0, 165], linewidth=1, color='#2989e1',alpha=ALPHA1)
         except:
             pass
 
@@ -1361,8 +1361,8 @@ class MatplotlibWidget(QMainWindow):
             self.analine2.remove()
         except:
             pass
-        self.analine1, = self.MplWidget.canvas.axes.plot([start_datetime,start_datetime],[0, 130], linewidth=1, color='g', alpha=0.2)
-        self.analine2, = self.MplWidget.canvas.axes.plot([end_datetime,end_datetime],[0, 130], linewidth=1, color='g', alpha=0.2)
+        self.analine1, = self.MplWidget.canvas.axes.plot([start_datetime,start_datetime],[0, 165], linewidth=1, color='g', alpha=0.2)
+        self.analine2, = self.MplWidget.canvas.axes.plot([end_datetime,end_datetime],[0, 165], linewidth=1, color='g', alpha=0.2)
 
         self.analine_visibility()
         #----------------------LOAD_DATA_SQL----------------------------------------------------
@@ -1962,7 +1962,7 @@ class MatplotlibWidget(QMainWindow):
         fig.canvas.set_window_title('Interpolation Tests Figure')
         for axis in ax.flat:
             axis.set(xlabel='Time',ylabel='Number of People')
-            axis.set_ylim([0,130])
+            axis.set_ylim([0,165])
             axis.set_xlim([0, 1439])
 
         df11.plot(ax=ax[0], color='black') #slinear
